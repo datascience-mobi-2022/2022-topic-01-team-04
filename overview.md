@@ -7,7 +7,7 @@
 *literature (more or less theoretical)*
 
 - Otsu tresholding:  
-https://ieeexplore.ieee.org/document/4310076
+https://ieeexplore.ieee.org/document/4310076 (Stand in Beschreibung)
 
 - Dice score:  
 https://towardsdatascience.com/metrics-to-evaluate-your-semantic-segmentation-model-6bcb99639aa2
@@ -22,7 +22,7 @@ https://pyimagesearch.com/2015/03/23/sliding-windows-for-object-detection-with-p
 
 
 *literature*
-- https://bbbc.broadinstitute.org/image_sets
+- https://bbbc.broadinstitute.org/image_sets (war in Beschreibung)
 
 ## Project structure
 PROJECT PROPOSAL: until 18.05
