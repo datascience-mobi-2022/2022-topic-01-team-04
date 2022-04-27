@@ -30,7 +30,3 @@ PROJECT PROPOSAL: until 18.05
 - Milestones (improtant achievements)
 - Deliverables (result for each milestone)
 - Approximate timetable
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
