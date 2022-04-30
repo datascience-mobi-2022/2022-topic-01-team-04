@@ -11,14 +11,14 @@ Was könnte interessant sein? (wenn man zeit hat)
 •	Wie könne man die Limitationen umgehen? (Lösungen)  
 •	Könnte man es schaffen, dass das Programm die Kerne auf einem image automatisch zählt?  
 •	Könnte man sich die größe der Kerne auf dem image grob angeben lassen?  
-•	Können wir es auch schaffen, dass man programmiert, dass die „holes“ der Kerne gefüllt werden? (siehe video)  
+•	Können wir es auch schaffen, dass man programmiert, dass die „holes“ der Kerne gefüllt werden? (siehe video: https://www.youtube.com/watch?v=jUUkMaNuHP8 )  
 
 List of planned analysis steps
 
 •	Programmieren um noice zu reduzieren?  
 - Intensity clipping  
 •	Den perfekten Schwellenwert ermitteln (Otsu threshold)  
-•	  
+  
 
 Milestones
 
