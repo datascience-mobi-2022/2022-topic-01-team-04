@@ -11,7 +11,8 @@ Was könnte interessant sein? (wenn man zeit hat)
 -	Wie könne man die Limitationen umgehen? (Lösungen)  
 -	Könnte man es schaffen, dass das Programm die Kerne auf einem image automatisch zählt?  
 -	Könnte man sich die größe der Kerne auf dem image grob angeben lassen?  
--	Können wir es auch schaffen, dass man programmiert, dass die „holes“ der Kerne gefüllt werden? (siehe video)  
+-	Können wir es auch schaffen, dass man programmiert, dass die „holes“ der Kerne gefüllt werden? (siehe video)
+-	Mehrere Schwellenwerte um die Kerne im Hintergrund/Vordergrund zu differenzieren? (siehe video)  
 
 List of planned analysis steps
 
