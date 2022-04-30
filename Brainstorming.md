@@ -16,6 +16,7 @@ Was könnte interessant sein? (wenn man zeit hat)
 List of planned analysis steps
 
 •	Programmieren um noice zu reduzieren?  
+- Intensity clipping
 •	Den perfekten Schwellenwert ermitteln (Otsu threshold)  
 •	  
 
