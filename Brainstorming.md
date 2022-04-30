@@ -26,9 +26,9 @@ Deliverables
 Approximate timetable
 
 
-Einleitung
+Einleitung  
 •	Für was nuclei segmentation?  
 •	Was bringt otsu threshold?  
-•	Für was dice score segmentation?  
+•	Für was dice score segmentation?   
 
 
