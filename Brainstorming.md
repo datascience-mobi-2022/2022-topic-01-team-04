@@ -1,10 +1,10 @@
 Was wir aufjedenfall machen müssen:
 
-•	Image segmentation method
-•	„Dice score“ evaluation measure + testen auf synthetically generated images
+•	Image segmentation method  
+•	„Dice score“ evaluation measure + testen auf synthetically generated images  
 
-•	Methode anwenden auf cell nuclei images+ Dice score Berechnung
-•	Erweiterung der local threshold mittels window scheme
+•	Methode anwenden auf cell nuclei images+ Dice score Berechnung  
+•	Erweiterung der local threshold mittels window scheme  
 
 Was könnte interessant sein? (wenn man zeit hat)
 
