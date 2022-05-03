@@ -20,6 +20,8 @@ https://pyimagesearch.com/2015/03/23/sliding-windows-for-object-detection-with-p
 - (18) 1344x1024; Mouse embryonic cells stained with Hoechst; ~60 *nuclei/img*
 - (4) 1100x700; HeLa cells expressing H2b-GFP; 30-50 *nuclei/img*
 
+- Tif files have to be opened with a different program
+
 
 *literature*
 - https://bbbc.broadinstitute.org/image_sets (war in Beschreibung)
@@ -30,3 +32,6 @@ PROJECT PROPOSAL: until 18.05
 - Milestones (improtant achievements)
 - Deliverables (result for each milestone)
 - Approximate timetable
+
+- Presentation auf ENGLISCH
+- 
