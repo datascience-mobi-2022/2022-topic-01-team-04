@@ -33,5 +33,5 @@ PROJECT PROPOSAL: until 18.05
 - Deliverables (result for each milestone)
 - Approximate timetable
 
-- Presentation auf ENGLISCH
-- 
+- Presentation auf Englisch
+- Report auf Esnglisch
