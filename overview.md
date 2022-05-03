@@ -34,4 +34,23 @@ PROJECT PROPOSAL: until 18.05
 - Approximate timetable
 
 - Presentation auf Englisch
-- Report auf Esnglisch
+- Report auf Englisch
+
+## Project proposal
+1/3 + 1/3 + 1/3
+### Data:
+- data type
+- data bsp
+- what do we see?
+
+### Algorithm
+- What is otsu tresholding?
+- Dice score
+- Ideas
+
+### Project management
+
+- Milestones
+- How stuff is going to be organised
+- Github implementation
+- 
