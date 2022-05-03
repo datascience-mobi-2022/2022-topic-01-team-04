@@ -34,4 +34,4 @@ PROJECT PROPOSAL: until 18.05
 - Approximate timetable
 
 - Presentation auf Englisch
-- Report auf Esnglisch
+- Report auf Englisch
