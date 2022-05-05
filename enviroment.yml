@@ -1,0 +1,10 @@
+name: dataanalysis0104_env
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scipy
+prefix: D:\Anaconda\envs\dataanalysis0104_env
