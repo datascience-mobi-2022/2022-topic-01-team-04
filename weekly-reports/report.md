@@ -17,6 +17,7 @@
 - preprocessing -> welche Methoden sind sinnvoll (Filter etc.)  
 - alle Bilder reinladen (welche? -> wie pathways schreiben, dass alle darauf zugreifen können?)  
 - Prezi oder Powerpoint?  
+- andere evaluation methods außer dice score ? (MSD etc.)  
 
 ## Plans for next weeks
 - Über Themen genauer informieren  + PP Folien Überlegungen
