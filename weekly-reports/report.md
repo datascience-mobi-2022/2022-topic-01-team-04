@@ -16,7 +16,7 @@
 - sliding window-Prinzip  
 - preprocessing -> welche Methoden sind sinnvoll (Filter etc.)  
 - alle Bilder reinladen (welche? -> wie pathways schreiben, dass alle darauf zugreifen können?)  
--
+- Prezi oder Powerpoint?  
 
 ## Plans for next weeks
 - Über Themen genauer informieren  + PP Folien Überlegungen
