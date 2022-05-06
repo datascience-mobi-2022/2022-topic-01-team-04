@@ -1,13 +1,13 @@
 # Meeting notes
-**DD.MM.YYYY**
+**10.05.2022**
 ## Last week's progress
 - jeder hat nun ein environment (conda Problem gelöst)         
 -Unser Repository gegliedert und geordnet... -> Github Experten geworden :)  
 - Gliederung für das Project Proposal erstellt
 -Themen eingeteilt: 
-            -Methoden   (Ieva, Maribel)
-            -Data       (Marie, Helen)
-            -Milestones (Marie, Helen)
+            -Methoden   (Ieva, Maribel)  
+            -Data       (Marie, Helen)  
+            -Milestones (Marie, Helen)  
  -Quellen gelesen und Überblick verschafft über Milestones  
  -Zeitplan erstellen   
  
