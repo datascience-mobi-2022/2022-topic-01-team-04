@@ -2,14 +2,14 @@
 **10.05.2022**
 ## Last week's progress
 - jeder hat nun ein environment (conda Problem gelöst)         
--Unser Repository gegliedert und geordnet... -> Github Experten geworden :)  
+- Unser Repository gegliedert und geordnet... -> Github Experten geworden :)  
 - Gliederung für das Project Proposal erstellt
--Themen eingeteilt: 
+- Themen eingeteilt: 
             -Methoden   (Ieva, Maribel)  
             -Data       (Marie, Helen)  
-            -Milestones (Marie, Helen)  
- -Quellen gelesen und Überblick verschafft über Milestones  
- -Zeitplan erstellen   
+            -Milestones (Marie, Helen)    
+ - Quellen gelesen und Überblick verschafft über Milestones  
+ - Zeitplan erstellen   
  
  
 ## Questions
@@ -19,10 +19,10 @@
 -
 
 ## Plans for next weeks
--Über Themen genauer informieren  + PP Folien Überlegungen
--erste Programmierschritte (Histogramm)  
--Gegenseitiger Austausch  
--Project proposal  
+- Über Themen genauer informieren  + PP Folien Überlegungen
+- erste Programmierschritte (Histogramm)  
+- Gegenseitiger Austausch  
+- Project proposal  
 
      
       
