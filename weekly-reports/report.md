@@ -19,11 +19,14 @@
 - Prezi oder Powerpoint?  
 - andere evaluation methods außer dice score ? (MSD etc.)  
 
+
 ## Plans for next weeks
 - Über Themen genauer informieren  + PP Folien Überlegungen
-- erste Programmierschritte (Histogramm)  
+- erste Programmierschritte (Histogramm)
+    - Kernel Crash beheben... 
 - Gegenseitiger Austausch  
-- Project proposal  
+- Project proposal 
+
 
      
       
