@@ -67,13 +67,13 @@ define function dsc(x # x is picture number? but i dont know yet how to make it 
 	FN = 0  
 	TN = 0  
 	for i in range (include picture size)  
-		if pixel_acq(i)==0: #if the pixel is white, have to recheck though, this might be very syntatically incorrect  
-			if pixel_gt(i)==0:  
+		if pixel_acq(i)==256: #if the pixel is white, have to recheck though, this might be very syntatically and intensity-wise incorrect  
+			if pixel_gt(i)==256:  
 				TP += 1  
 			else:  
 				FP += 1  
 		else:  
-			if pixel_gt(i)==256: #i think 256 was the upper intensity treshold?  
+			if pixel_gt(i)==0:   
 				TN +=1  
 			else:  
 				FN +=1  
