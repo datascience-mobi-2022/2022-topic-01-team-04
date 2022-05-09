@@ -60,26 +60,8 @@ there is no overlay between the two datasets: TP=0 => DSC=2TP/(2TP+FP+FN)=0_
 positive data in cell nuclei segmentation : white pixels of the region  
 gt = ground truth data; acq = acquired data after otsu tresholding  
 
-code idea:  
-define function dsc(x # x is picture number? but i dont know yet how to make it so that it takes the right picture and its according gt picture but we still have time to figure that out):  
-	TP = 0  
-	FP = 0  
-	FN = 0  
-	TN = 0  
-	for i in range (include picture size)  
-		if pixel_acq(i)==256: #if the pixel is white, have to recheck though, this might be very syntatically and intensity-wise incorrect  
-			if pixel_gt(i)==256:  
-				TP += 1  
-			else:  
-				FP += 1  
-		else:  
-			if pixel_gt(i)==0:   
-				TN +=1  
-			else:  
-				FN +=1  
-		#after has gone trough all pixels... 2*2 nested loops, mby there is a way to make quicker  
-		DSC = 2TP/(2TP+FP+FN)  
-	print(DSC)  
+<img width="945" alt="image" src="https://user-images.githubusercontent.com/104202992/167428479-5a7ed877-c950-4483-a8e7-a573c101e613.png">
+ 
   
 - Ideas
 
