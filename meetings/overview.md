@@ -59,6 +59,8 @@ there is no overlay between the two datasets: TP=0 => DSC=2TP/(2TP+FP+FN)=0_
 --->Implementation via python: for gt pictures and acq pictures:  
 positive data in cell nuclei segmentation : white pixels of the region  
 gt = ground truth data; acq = acquired data after otsu tresholding  
+<img width="953" alt="image" src="https://user-images.githubusercontent.com/104202992/167428772-3e03a352-c4a3-46ed-8dc4-82efdab0f783.png">
+
 
 
  
