@@ -60,7 +60,7 @@ there is no overlay between the two datasets: TP=0 => DSC=2TP/(2TP+FP+FN)=0_
 positive data in cell nuclei segmentation : white pixels of the region  
 gt = ground truth data; acq = acquired data after otsu tresholding  
 
-<img width="945" alt="image" src="https://user-images.githubusercontent.com/104202992/167428479-5a7ed877-c950-4483-a8e7-a573c101e613.png">
+
  
   
 - Ideas
