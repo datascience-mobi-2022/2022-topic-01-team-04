@@ -13,11 +13,11 @@
  
  
 ## Questions
-- sliding window-Prinzip  
+- sliding window-Prinzip  -> Fenster rüber, wie mean Filter
 - preprocessing -> welche Methoden sind sinnvoll (Filter etc.)  
 - alle Bilder reinladen (welche? -> wie pathways schreiben, dass alle darauf zugreifen können?)  
 - Prezi oder Powerpoint?  
-- andere evaluation methods außer dice score ? (MSD etc.)  
+- andere evaluation methods außer dice score ? (MSD etc.)  -> vergleichen, Challenges 
 
 
 ## Plans for next weeks
