@@ -14,6 +14,7 @@
 - Dice score (whole data set?, one representative image)
 - Power Point zeigen 
 - Datensätze wie tiefgreifend erklären? (Zeit knapp)
+- EGFP or Hoechst? NIH3T3 dataset
 
 
 ## Plans for next weeks
