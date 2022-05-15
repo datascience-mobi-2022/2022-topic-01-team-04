@@ -1,9 +1,10 @@
 # Meeting notes
-**DD.MM.YYYY**
+**17.05.2022**
 ## Last week's progress
 - finishing our PP presentation
 - Practicing our presentation
-- timing alle circa 3 minuten 
+- timing alle circa 3 minuten   
+- Histogramme erstellt
  
  
 ## Questions
@@ -14,7 +15,8 @@
 - Dice score (whole data set?, one representative image)
 - Power Point zeigen 
 - Datensätze wie tiefgreifend erklären? (Zeit knapp)
-- EGFP or Hoechst? NIH3T3 dataset
+- EGFP or Hoechst? NIH3T3 dataset  
+- Sollen die ersten Programmierschritte schon in die Präsi ? (auf Extra-Folien, einfach nur um zu zeigen, dass schon ertwas programmiert wurde) 
 
 
 ## Plans for next weeks
