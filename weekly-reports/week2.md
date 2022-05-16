@@ -17,6 +17,7 @@
 - Datensätze wie tiefgreifend erklären? (Zeit knapp)
 - EGFP or Hoechst? NIH3T3 dataset  
 - Sollen die ersten Programmierschritte schon in die Präsi ? (auf Extra-Folien, einfach nur um zu zeigen, dass schon ertwas programmiert wurde) 
+- Holes? In the cells? nocleoli?
 
 
 ## Plans for next weeks
