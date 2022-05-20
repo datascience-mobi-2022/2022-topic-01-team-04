@@ -5,7 +5,8 @@
 - ...
   
 ## Questions
-- Are we allowed to use os (?) package which allows to load all files from a folder via single code?
+- Are we allowed to use _os_ package which allows to load all files from a folder via single code?
+- Are we allowed to use the _time_ package for easier runtime measuring?
 
 
 ## Plans for next weeks
