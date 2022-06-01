@@ -12,14 +12,12 @@
 
 
 
-%pylab
-%matplotlib inline
-import matplotlib.pyplot as plt
-import numpy
+
 
 # otsu thresholding
 def otsu_thresholding(img,x):
-  
+    import matplotlib.pyplot as plt
+    import numpy
 #bins optimieren.... alles zu 0-255 machen
 
 
