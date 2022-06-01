@@ -11,14 +11,17 @@
 #### **8.** segmented output image received
 
 
+import matplotlib.pyplot as plt
+import numpy
+
 # otsu thresholding
-def otsu_thresholding(img):
+def otsu_thresholding(img,x):
   
 #bins optimieren.... alles zu 0-255 machen
 
 
    # load histogram, Mathematische werte aus Histogramm rausgreifen
-    n, bins, patches = plt.hist(img.flatten(),log = 'False')
+    n, bins, patches = plt.hist(img.flatten(),log = 'False',bins = x)
 
    # initialize threshold value (T = 0) 
     thres = 0
