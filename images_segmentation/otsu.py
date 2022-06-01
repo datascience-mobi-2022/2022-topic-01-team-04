@@ -11,6 +11,9 @@
 #### **8.** segmented output image received
 
 
+
+%pylab
+%matplotlib inline
 import matplotlib.pyplot as plt
 import numpy
 
