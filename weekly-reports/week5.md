@@ -1,5 +1,5 @@
 # Meeting notes
-**07.05.2022**
+**07.06.2022**
 ## Last week's progress
 - ...
 - ...
@@ -11,5 +11,8 @@
 
 
 ## Plans for next weeks
-- ...
-- ...
+- Sliding window   
+- Package   
+- Otsu code optimieren und kommentieren  
+- Alle Bilder reinladen  
+- Systematisch testen   
