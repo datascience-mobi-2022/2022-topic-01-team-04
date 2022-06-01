@@ -16,13 +16,13 @@
 
 # otsu thresholding
 def otsu_thresholding(img,x):
-    import matplotlib.pyplot as plt
+    import matplotlib.pyplot
     import numpy
 #bins optimieren.... alles zu 0-255 machen
 
 
    # load histogram, Mathematische werte aus Histogramm rausgreifen
-    n, bins, patches = plt.hist(img.flatten(),log = 'False',bins = x)
+    n, bins, patches = matplotlib.pyplot.hist(img.flatten(),log = 'False',bins = x)
 
    # initialize threshold value (T = 0) 
     thres = 0
@@ -49,8 +49,10 @@ def otsu_thresholding(img,x):
             mean_sum0 += bins[j]*n[j]
             
         # background class probabilites and class mean levels
-        w0 = w0_sum / sum(n)    
-        mean_0 = mean_sum0 / sum(n[0:i+1])
+        w0 = w0_sum / sum(n)  
+        if(sum(n[0:i+1]) != 0):  
+             mean_0 = mean_sum0 / sum(n[0:i+1])
+        else: mean_0 = 0
         
         # compute background class variance
         for m in range(0,i+1):
@@ -67,13 +69,15 @@ def otsu_thresholding(img,x):
         # compute foreground class probabilities and class mean levels    
         w1 = w1_sum / sum(n)
      
-        mean_1 = mean_sum1 / sum(n[i+1:len(n)])
-
+        if(sum(n[i+1:len(n)]) != 0):
+            mean_1 = mean_sum1 / sum(n[i+1:len(n)])
+        else: mean_1 = 0
         # compute foreground class variance 
         for s in range(i+1,len(n)):
             v1_sum += ((bins[s]-mean_1) ** 2) * n[s]
-        
-        v1 = v1_sum / sum(n[i+1:len(n)])
+        if( sum(n[i+1:len(n)]) != 0):
+            v1 = v1_sum / sum(n[i+1:len(n)])
+        else: v1 = 0
 
         # compute within class variance and append to list
         bclv = (w0 * v0) + (w1 * v1)
@@ -90,15 +94,15 @@ def otsu_thresholding(img,x):
 
 
     #perform image clipping 
-    for o in ndindex(copy.shape):
+    for o in numpy.ndindex(copy.shape):
         if copy[o] < (thres): 
             copy[o] = 0
         else:
             copy[o] = 255
 
     # output image
-    figure()  
+    '''figure()  
     imshow(copy, 'gray')
-    colorbar()
+    colorbar()'''
 
     return copy 
