@@ -1,5 +1,5 @@
 # Meeting notes
-**07.05.2022**
+**07.06.2022**
 ## Last week's progress
 - ...
 - ...
