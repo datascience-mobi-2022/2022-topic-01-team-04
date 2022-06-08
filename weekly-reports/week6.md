@@ -8,6 +8,12 @@
 ## Questions
 - 
 - 
+
 ## Plans for next weeks
-- codes optimieren
-- 
+- codes optimieren (sliding window)
+- Boxplots zu Anwendungen
+- sliding window untersch frame sizes und step sizes probieren
+- preprocessing 
+    -filter (sizes)
+    -holes
+    ---> was ist am besten
