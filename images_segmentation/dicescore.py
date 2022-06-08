@@ -3,10 +3,11 @@ import numpy as np
 import scipy.ndimage
 import matplotlib.pyplot as plt
 
-
+ground_truth=[]
+thresholded=[]
 def b_dice(x,gt): # POSITIVE PIXELS = BACKGROUND x=picture number, same number for gt and post tresholding image):
     gt = ground_truth[x] #gt picture x
-    pt = tresholded[x] #post tresholding picture x
+    pt = thresholded[x] #post tresholding picture x
     tp=0
     tn=0
     fp=0
