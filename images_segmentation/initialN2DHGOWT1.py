@@ -1,5 +1,5 @@
 
-from matplotlib.pyplot import pyplot as plt
+from matplotlib import pyplot as plt
 
 
 gt1 = plt.imread(r'data\Otsu_data\N2DH-GOWT1\gt\man_seg01.tif')
