@@ -29,11 +29,11 @@ def otsu_thresholding(img,x):
     copy = img.copy()
 
     # create list to store values of within class variance for each threshold value
-    bcv = list()
+    wcv = list()
     
     # set up initial values
     for i in range(0,len(n)):
-        bclv = 0
+        wclv = 0
         w0_sum = 0
         mean_sum0 = 0
         v0_sum = 0
@@ -45,8 +45,9 @@ def otsu_thresholding(img,x):
 
         #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
         for j in range(0,i+1):
-            w0_sum += n[j]
-            mean_sum0 += bins[j]*n[j]
+            #if(n[j] != 'NA' & bins[j] != 'NA'): 
+                w0_sum += n[j]
+                mean_sum0 += bins[j]*n[j]
             
         # background class probabilites and class mean levels
         w0 = w0_sum / sum(n)  
@@ -56,15 +57,17 @@ def otsu_thresholding(img,x):
         
         # compute background class variance
         for m in range(0,i+1):
-            v0_sum += ((bins[m]-mean_0)** 2) * n[m]
+            #if(n[m] != 'NA' & bins[m] != 'NA'): 
+                v0_sum += ((bins[m]-mean_0)** 2) * n[m]
         
         v0 = v0_sum / sum(n[0:i+1])
         
         # sum up the probabilites of each intensity value;  and the mean value
         for k in range(i+1, len(n)): 
-            w1_sum += n[k]
+            #if(n[k] != 'NA'& bins[k] != 'NA'): 
+                w1_sum += n[k]
           
-            mean_sum1 += bins[k]*n[k]
+                mean_sum1 += bins[k]*n[k]
 
         # compute foreground class probabilities and class mean levels    
         w1 = w1_sum / sum(n)
@@ -74,22 +77,23 @@ def otsu_thresholding(img,x):
         else: mean_1 = 0
         # compute foreground class variance 
         for s in range(i+1,len(n)):
-            v1_sum += ((bins[s]-mean_1) ** 2) * n[s]
+            #if(n[s] != 'NA' & bins[s] != 'NA'): 
+                v1_sum += ((bins[s]-mean_1) ** 2) * n[s]
         if( sum(n[i+1:len(n)]) != 0):
             v1 = v1_sum / sum(n[i+1:len(n)])
         else: v1 = 0
 
         # compute within class variance and append to list
-        bclv = (w0 * v0) + (w1 * v1)
-        bcv.append(bclv)
+        wclv = (w0 * v0) + (w1 * v1)
+        wcv.append(wclv)
 
     # select optimal threshold value, minimum value of within class variance
-    optimal_thres = min(bcv)
+    optimal_thres = min(wcv)
 
     #select optimal threshold in the list
     l = 0
-    while l < len(bcv):
-        if bcv[l] == optimal_thres: thres = bins[l]
+    while l < len(wcv):
+        if wcv[l] == optimal_thres: thres = bins[l]
         l += 1
 
 
@@ -100,9 +104,5 @@ def otsu_thresholding(img,x):
         else:
             copy[o] = 255
 
-    # output image
-    '''figure()  
-    imshow(copy, 'gray')
-    colorbar()'''
 
     return copy 
