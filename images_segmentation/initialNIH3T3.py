@@ -1,5 +1,6 @@
 #normal picture loading
 #ground truth images 
+from matplotlib import pyplot as plt
 
 gt1 = plt.imread(r'data\Otsu_data\NIH3T3\gt\0.png')
 gt2 = plt.imread(r'data\Otsu_data\NIH3T3\gt\1.png')

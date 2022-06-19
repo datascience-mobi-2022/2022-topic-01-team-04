@@ -1,3 +1,7 @@
+from matplotlib import pyplot as plt
+
+
+
 gt1 = plt.imread(r'data\Otsu_data\N2DL-HeLa\gt\man_seg13.tif')
 gt2 = plt.imread(r'data\Otsu_data\N2DL-HeLa\gt\man_seg52.tif')
 gt3 = plt.imread(r'data\Otsu_data\N2DL-HeLa\gt\man_seg75.tif')

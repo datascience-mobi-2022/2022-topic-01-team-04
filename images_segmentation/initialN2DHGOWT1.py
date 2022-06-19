@@ -1,11 +1,13 @@
 
+from matplotlib import pyplot as plt
+
+
 gt1 = plt.imread(r'data\Otsu_data\N2DH-GOWT1\gt\man_seg01.tif')
 gt2 = plt.imread(r'data\Otsu_data\N2DH-GOWT1\gt\man_seg21.tif')
 gt3 = plt.imread(r'data\Otsu_data\N2DH-GOWT1\gt\man_seg31.tif')
 gt4 = plt.imread(r'data\Otsu_data\N2DH-GOWT1\gt\man_seg39.tif')
 gt5 = plt.imread(r'data\Otsu_data\N2DH-GOWT1\gt\man_seg52.tif')
 gt6 = plt.imread(r'data\Otsu_data\N2DH-GOWT1\gt\man_seg72.tif')
-
 
 
 ground_truth_N2DH = [gt1, gt2, gt3, gt4, gt5, gt6]
