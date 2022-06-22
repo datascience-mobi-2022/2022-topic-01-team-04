@@ -8,5 +8,5 @@
 
 ## Plans for next weeks
 - alle preprocessing ausprobieren -> Boxplots
-- start report (Introduction, Method,..)
+- start report (Introduction, Methods, preprocessing, thresholding, Datasets)
 - 
