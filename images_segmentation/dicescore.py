@@ -43,7 +43,7 @@ def b_dice(x):
 
 def f_dice(x): # same thing for positive pixels = foreground pixels
     gt = ground_truth[x] 
-    pt = tresholded[x] 
+    pt = thresholded[x] 
     tp=0
     tn=0
     fp=0
