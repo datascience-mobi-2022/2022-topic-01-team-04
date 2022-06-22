@@ -1,9 +1,10 @@
 #Packages
-%pylab
-%matplotlib inline
+#%import pylab
+#%matplotlib inline
+from matplotlib import figure
+from matplotlib.pyplot import imshow
 import numpy as np
-from images_segmentation import otsu as ot
-from images_segmentation import dicescore as dsc
+from images_segmentation.otsu import otsu_thresholding
 
 # crop function, can be useful outside the sliding window, returns an array equivalent to a rectangular "cut-out" of the picture :)
 def crop(image, xmin, ymin, xmax, ymax):
@@ -13,10 +14,11 @@ def crop(image, xmin, ymin, xmax, ymax):
     return cropped
 
 
+
  #define an otsu_i function, which sums up intensity values(zeros or ones) for each pixel 
  #and counts the amount of times a new value has been added for the pixel
 def otsu_i(image, selectivity):
-    img=ot.otsu_thresholding(image, 256)
+    img=otsu_thresholding(image, 256)
     it = np.zeros([img.shape[0],img.shape[1],2])
     for x, y in np.ndindex(img.shape[0],img.shape[1]):
             if img[x,y] == 0:
@@ -28,6 +30,7 @@ def otsu_i(image, selectivity):
                     it[x,y,0]+=0
             it[x,y,1]+=selectivity
     return it
+
 
 #method 1 : mode of foreground and background assignment
 def i_sw(image,stepsize,framesize, sensitivity):
