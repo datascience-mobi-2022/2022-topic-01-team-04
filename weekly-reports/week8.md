@@ -11,4 +11,4 @@
 - 
 
 ## Plans for next weeks
--
+- maximally vectorize sliding window @ otsu
