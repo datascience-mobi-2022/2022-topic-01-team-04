@@ -3,7 +3,7 @@
 ## Last week's progress
 
 ## Questions
-- 
+- interpretation boxplots (paar stellen noch unschlüssig)
 - 
 
 ## Plans for next weeks
