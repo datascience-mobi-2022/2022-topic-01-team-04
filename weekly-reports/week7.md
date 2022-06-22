@@ -4,7 +4,7 @@
 
 ## Questions
 - interpretation boxplots (paar stellen noch unschlüssig)
-- 
+- Bilder via package reinladen
 
 ## Plans for next weeks
 - alle preprocessing ausprobieren -> Boxplots
