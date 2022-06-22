@@ -1,6 +1,4 @@
 #Packages
-#%import pylab
-#%matplotlib inline
 from matplotlib import figure
 from matplotlib.pyplot import imshow
 import numpy as np
