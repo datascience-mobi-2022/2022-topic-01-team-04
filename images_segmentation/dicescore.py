@@ -4,17 +4,15 @@ import scipy.ndimage
 import matplotlib.pyplot as plt
 
 #create a list for ground truth images and thresholded images (is done manually before running the dice score algorithm, supports iteration trough a whole dataset, here empty lists included just for the package to function)
-ground_truth=[]
-thresholded=[]
 
 
 # option 1: positive pixels = background pixels. Used for images with foreground > background
 # define the algorithm, x = image coordinate in the ground truth and thresholded lists
-def b_dice(x): 
+def b_dice(x, gt_list, pt_list): 
 
     #pick the ground truth and thresholded pictures from the lists
-    gt = ground_truth[x] 
-    pt = thresholded[x] 
+    gt = gt_list[x] 
+    pt = pt_list[x] 
 
     #set new variables for count of different pixel types
     tp=0 
@@ -41,9 +39,9 @@ def b_dice(x):
     b_dsc= 2*tp/(2*tp+fn+fp)
     return b_dsc
 
-def f_dice(x): # same thing for positive pixels = foreground pixels
-    gt = ground_truth[x] 
-    pt = thresholded[x] 
+def f_dice(x,gt_list,pt_list): # same thing for positive pixels = foreground pixels
+    gt = gt_list[x] 
+    pt = pt_list[x] 
     tp=0
     tn=0
     fp=0
@@ -61,11 +59,11 @@ def f_dice(x): # same thing for positive pixels = foreground pixels
     return f_dsc
 
 
-def dice(x, method):
+def dice(x,gt_list,pt_list, method):
     if method=='background' or method=='b':
-        b_dice(x)
+        b_dice(x,gt_list,pt_list)
     if method=='foreground' or method == 'f':
-        f_dice(x)
+        f_dice(x,gt_list,pt_list)
     else:
         print('write <foreground> or <f> for forward dsc and <bacground> or <b> for background dsc')
 
