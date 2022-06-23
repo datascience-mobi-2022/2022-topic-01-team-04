@@ -1,1 +1,1 @@
-# Implementation and evaluation of Otsu thersholding
+Implementation and evaluation of Otsu thersholding
