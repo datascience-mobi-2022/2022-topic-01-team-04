@@ -22,4 +22,6 @@
 - erst stretchen dann filter erst filter dann stretchen (unterschied?)
 - write report (Introduction and methods)
 - optimal filter size herausfinden
+- multithresholding 
+-cell counting 
 

@@ -22,7 +22,7 @@ def otsu_thresholding(img,x):
 
 
    # load histogram, Mathematische werte aus Histogramm rausgreifen
-    n, bins, patches = matplotlib.pyplot.hist(img.flatten(),log = 'False',bins = x)
+    n, bins = numpy.histogram(img.flatten(),bins = x)
 
    # initialize threshold value (T = 0) 
     thres = 0
@@ -102,7 +102,7 @@ def otsu_thresholding(img,x):
         if copy[o] < (thres): 
             copy[o] = 0
         else:
-            copy[o] = 255
+            copy[o] = 1
 
 
     return copy 
