@@ -16,3 +16,4 @@
 ## Plans for next weeks
 - maximally vectorize sliding window @ otsu
 - alles einheitlich machen, löschen was unnötig ist, kurzen, optimieren,...
+- erst stretchen dann filter erst filter dann stretchen (unterschied?)
