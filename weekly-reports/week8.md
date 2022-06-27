@@ -11,9 +11,15 @@
 
 ## Questions
 - histogram plotting in otsu algorithm, where does it come from?
-- 
+- Fragen zum Report
+- boxplots - lieber eigene Funktion definieren oder bereits implementierte Funktion nutzen?
+
+
 
 ## Plans for next weeks
 - maximally vectorize sliding window @ otsu
 - alles einheitlich machen, löschen was unnötig ist, kurzen, optimieren,...
 - erst stretchen dann filter erst filter dann stretchen (unterschied?)
+- write report (Introduction and methods)
+- optimal filter size herausfinden
+
