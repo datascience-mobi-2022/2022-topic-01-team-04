@@ -4,6 +4,9 @@
 - sliding window edge problem solved
 - dice vectorized, runtime reduction from 6 to 0.1 s
 - sliding window partially vectorized
+- writing report theorie,... 
+- boxplots
+- preprocessing angewendet
 
 
 ## Questions
@@ -12,3 +15,4 @@
 
 ## Plans for next weeks
 - maximally vectorize sliding window @ otsu
+- alles einheitlich machen, löschen was unnötig ist, kurzen, optimieren,...
