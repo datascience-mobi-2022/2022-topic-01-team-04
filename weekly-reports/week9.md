@@ -9,6 +9,3 @@
 
 
 ## Plans for next weeks
-- stretching
-- Axen überlegen bei boxplots (gleiche range)
--  seaborn?

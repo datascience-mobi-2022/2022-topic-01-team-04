@@ -24,4 +24,6 @@
 - optimal filter size herausfinden
 - multithresholding 
 -cell counting 
-
+- stretching
+- Axen überlegen bei boxplots (gleiche range)
+-  seaborn?
