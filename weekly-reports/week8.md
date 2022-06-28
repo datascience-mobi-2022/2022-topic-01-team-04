@@ -25,4 +25,5 @@
 - multithresholding 
 -cell counting 
 - \n oder figsize breiter machen
+- Report: methode otsu, challenges, stretching optimieren, laufzeit diskutieren, otsu aufrufen in methode, probleme diskutieren, auch bad results inn report, diskussion!!!, run times, 
 
