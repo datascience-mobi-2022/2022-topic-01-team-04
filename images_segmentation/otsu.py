@@ -20,7 +20,7 @@ def otsu_thresholding(img,x):
     import numpy
 #bins optimieren.... alles zu 0-255 machen
 
-
+img = x[~numpy.isnan(img)]
    # load histogram, Mathematische werte aus Histogramm rausgreifen
     n, bins = numpy.histogram(img.flatten(),bins = x)
 
