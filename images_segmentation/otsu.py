@@ -17,6 +17,9 @@
 # otsu thresholding
 
 
+from cmath import nan
+
+
 def otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
@@ -47,7 +50,7 @@ def otsu_thresholding(img,x):
 
         #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
         for j in range(0,i+1):
-            if(n[j] != numpy.NaN & bins[j] != numpy.NaN): 
+            if(n[j] != nan & bins[j] != nan): 
                 w0_sum += n[j]
                 mean_sum0 += bins[j]*n[j]
             
@@ -59,14 +62,14 @@ def otsu_thresholding(img,x):
         
         # compute background class variance
         for m in range(0,i+1):
-            if(n[m] != numpy.NaN & bins[m] != numpy.NaN): 
+            if(n[m] != nan & bins[m] != nan): 
                 v0_sum += ((bins[m]-mean_0)** 2) * n[m]
         
         v0 = v0_sum / sum(n[0:i+1])
         
         # sum up the probabilites of each intensity value;  and the mean value
         for k in range(i+1, len(n)): 
-            if(n[k] != numpy.NaN & bins[k] != numpy.NaN): 
+            if(n[k] != nan & bins[k] != nan): 
                 w1_sum += n[k]
           
                 mean_sum1 += bins[k]*n[k]
@@ -79,7 +82,7 @@ def otsu_thresholding(img,x):
         else: mean_1 = 0
         # compute foreground class variance 
         for s in range(i+1,len(n)):
-            if(n[s] != numpy.NaN & bins[s] != numpy.NaN): 
+            if(n[s] != nan & bins[s] != nan): 
                 v1_sum += ((bins[s]-mean_1) ** 2) * n[s]
         if( sum(n[i+1:len(n)]) != 0):
             v1 = v1_sum / sum(n[i+1:len(n)])
