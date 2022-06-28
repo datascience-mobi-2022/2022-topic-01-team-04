@@ -15,14 +15,19 @@
 
 
 # otsu thresholding
+
+
+from cmath import nan
+
+
 def otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
 #bins optimieren.... alles zu 0-255 machen
 
-img = img[~numpy.isnan(img)]
+#img = img[~numpy.isnan(img)]
    # load histogram, Mathematische werte aus Histogramm rausgreifen
-    n, bins = numpy.histogram(img.flatten(),bins = x)
+    n, bins = numpy.histogram(img.flatten(),bins = x, range=(bins.min(),bins.max()))
 
    # initialize threshold value (T = 0) 
     thres = 0
@@ -45,7 +50,7 @@ img = img[~numpy.isnan(img)]
 
         #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
         for j in range(0,i+1):
-            #if(n[j] != 'NA' & bins[j] != 'NA'): 
+            #if(n[j] != nan & bins[j] != nan): 
                 w0_sum += n[j]
                 mean_sum0 += bins[j]*n[j]
             
@@ -57,14 +62,14 @@ img = img[~numpy.isnan(img)]
         
         # compute background class variance
         for m in range(0,i+1):
-            #if(n[m] != 'NA' & bins[m] != 'NA'): 
+            #if(n[m] != nan & bins[m] != nan): 
                 v0_sum += ((bins[m]-mean_0)** 2) * n[m]
         
         v0 = v0_sum / sum(n[0:i+1])
         
         # sum up the probabilites of each intensity value;  and the mean value
         for k in range(i+1, len(n)): 
-            #if(n[k] != 'NA'& bins[k] != 'NA'): 
+            #if(n[k] != nan & bins[k] != nan): 
                 w1_sum += n[k]
           
                 mean_sum1 += bins[k]*n[k]
@@ -77,7 +82,7 @@ img = img[~numpy.isnan(img)]
         else: mean_1 = 0
         # compute foreground class variance 
         for s in range(i+1,len(n)):
-            #if(n[s] != 'NA' & bins[s] != 'NA'): 
+            #if(n[s] != nan & bins[s] != nan): 
                 v1_sum += ((bins[s]-mean_1) ** 2) * n[s]
         if( sum(n[i+1:len(n)]) != 0):
             v1 = v1_sum / sum(n[i+1:len(n)])
