@@ -27,7 +27,7 @@ def otsu_thresholding(img,x):
 
 #img = img[~numpy.isnan(img)]
    # load histogram, Mathematische werte aus Histogramm rausgreifen
-    n, bins = numpy.histogram(img.flatten(),bins = x, range=(bins.min(),bins.max()))
+    n, bins = numpy.histogram(img.flatten(),bins = x)
 
    # initialize threshold value (T = 0) 
     thres = 0
