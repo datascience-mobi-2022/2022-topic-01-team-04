@@ -24,4 +24,5 @@
 - optimal filter size herausfinden
 - multithresholding 
 -cell counting 
+- \n oder figsize breiter machen
 
