@@ -102,10 +102,6 @@ def otsu_thresholding(img,x):
         if copy[o] < (thres): 
             copy[o] = 0
         else:
-<<<<<<< HEAD
-            #copy[o] = 255
-=======
->>>>>>> 89e998cd80356eb92302ddd5fbfba22f4bdfd999
             copy[o] = 1
 
 
