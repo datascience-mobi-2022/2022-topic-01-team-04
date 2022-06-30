@@ -4,7 +4,7 @@
 from cmath import nan
 
 
-def otsu_vectorized(img,x):
+def otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
 
