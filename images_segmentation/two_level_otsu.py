@@ -1,7 +1,7 @@
 from cmath import nan
 
 
-def twolevel_falsch(img,x):
+def two_level_otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
 
@@ -119,7 +119,14 @@ def twolevel_falsch(img,x):
             
     return copy 
 
-def twolevel_richtig(img,x):
+
+
+
+
+
+
+
+def two_level_otsu_thresholding_clip(img,x):
     import matplotlib.pyplot
     import numpy
 
