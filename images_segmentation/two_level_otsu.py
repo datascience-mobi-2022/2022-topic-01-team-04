@@ -328,7 +328,7 @@ def two_level_otsu_thresholding(img,x):
 
 
     # select optimal threshold value, minimum value of within class variance
-    optimal_thres = min(wcv)
+    optimal_thres = max(wcv)
 
     #select optimal threshold in the list
     l = 0
@@ -442,7 +442,7 @@ def two_level_otsu_thresholding_clip(img,x):
 
 
     # select optimal threshold value, minimum value of within class variance
-    optimal_thres = min(wcv)
+    optimal_thres = max(wcv)
 
     #select optimal threshold in the list
     l = 0
