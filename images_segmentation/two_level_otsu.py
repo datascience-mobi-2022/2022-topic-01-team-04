@@ -144,6 +144,8 @@ def two_level_otsu_thresholding_clip_within(img,x):
     for i in range(0,len(n)):
         for t in range(0,len(n)):
             wclv = 0
+            mean_0 = 0
+            mean_1 = 0
             w0_sum = 0
             mean_sum0 = 0
             v0_sum = 0
@@ -261,6 +263,8 @@ def two_level_otsu_thresholding(img,x):
     # set up initial values
     for i in range(0,len(n)):
         for t in range(0,len(n)):
+            mean_0 = 0
+            mean_1 = 0
             wclv = 0
             w0_sum = 0
             mean_sum0 = 0
@@ -316,7 +320,7 @@ def two_level_otsu_thresholding(img,x):
         
 
             # compute within class variance and append to list
-            m_t = w0*mean_0 + w1*mean1 + w2*mean2 
+            m_t = w0*mean_0 + w1*mean_1 + w2*mean_2 
             wclv = w0*((mean_0 - m_t)**2)+ w1*((mean_1 - m_t)**2) + w2*((mean_2 - m_t)**2)
             thresholds = [i,t]
             wcv.append(wclv)
@@ -430,7 +434,7 @@ def two_level_otsu_thresholding_clip(img,x):
             # compute foreground class variance 
           
             # compute within class variance and append to list
-            m_t = w0*mean_0 + w1*mean1 + w2*mean2 
+            m_t = w0*mean_0 + w1*mean_1 + w2*mean_2 
             wclv = w0*((mean_0 - m_t)**2)+ w1*((mean_1 - m_t)**2) + w2*((mean_2 - m_t)**2)
             thresholds = [i,t]
             wcv.append(wclv)
