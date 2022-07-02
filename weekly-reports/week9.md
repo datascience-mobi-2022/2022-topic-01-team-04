@@ -25,4 +25,4 @@
 - Wir haben rausgefunden, dass between class otsu etwas schneller ist als Within class (Unterschied von 0,5-1s). Das ist jetzt nicht sehr signifikant und wir hatten alles davor auf within class variance. Sollen wir das dann anpassen oder reicht das, wenn wir das im Report diskutieren, da 1s wirklich nicht so sonderlich viel schneller ist. 
 
 ## Plans for next weeks
-- 
+- cell counting 
