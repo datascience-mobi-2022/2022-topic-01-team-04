@@ -18,6 +18,7 @@
 
 - Wir haben in unserem Package eine Datei die __pycache_ heißt. Was ist das?
 - Was sind .ipynb_checkpoints ? 
+- Was ist .DS_Store? (das hängt mit apple und den pathways zusammen...kann man die endgültig löschen oder werden die bei apple einfach benötigt?)
 
 - Report: wir haben herausgefunden, dass die Reihenfolge bei Preprocessing auch entscheidend ist (also ob man zuerst stretching macht und dann filter oder umgekehrt). Sollen wir das auch im Report diskutieren? Sollen im Boxplot dann beide Varianten gezeigt werden oder reicht es wenn man nur die bessere Variante (also die mit höherem Dice score) zeigt
 
