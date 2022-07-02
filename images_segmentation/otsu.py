@@ -4,7 +4,7 @@
 from cmath import nan
 
 
-def otsu_thresholding(img,x):
+def otsu_thresholding_within(img,x):
     import matplotlib.pyplot
     import numpy
 
@@ -87,7 +87,7 @@ def otsu_thresholding(img,x):
 from cmath import nan
 
 
-def otsu_thresholding_betweenclass(img,x):
+def otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
 
