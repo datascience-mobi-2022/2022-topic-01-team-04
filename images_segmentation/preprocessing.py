@@ -1,6 +1,6 @@
 # Set ground truth images from N2DH-GOWT1 dataset and N2DL-HeLa dataset to 0 and 1
 
-def reassign(x):
+def binarize(x):
     img = x.copy()
 
     for o in np.ndindex(img.shape):
