@@ -23,5 +23,7 @@
 
 - Report: Frage über unsere beide Versionen von two-level otsu und local thresholding--> was in resport? Preprocessing immer für alle Datensätze machen? Oder kann man im Report auch nur einen bestimmten Datensatz aussuchen? (z. B. local thresholding --> nur NIH3T3 datensatz wegen variierendem Hintergrund; two-level otsu --> nur NIH3T3 wegen reflections... )
 
+- Wir haben rausgefunden, dass between class otsu etwas schneller ist als Within class (Unterschied von 0,5-1s). Das ist jetzt nicht sehr signifikant und wir hatten alles davor auf within class variance. Sollen wir das dann anpassen oder reicht das, wenn wir das im Report diskutieren, da 1s wirklich nicht so sonderlich viel schneller ist. 
+
 ## Plans for next weeks
 - 
