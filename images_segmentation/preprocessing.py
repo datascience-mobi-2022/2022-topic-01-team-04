@@ -37,7 +37,9 @@ def stretch(x):
 # Preprocessing - Boxplot
 
 def dataset_boxplot(data , title , plot = True):
-    
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import seaborn as sns
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
     ax.set_xticklabels(['No preprocessing' , 'Median filter' , 'Gaussian filter' , 'Histogram \n stretching' , 'Median filter and \n histogram stretching' , 'Histogram stretching and \n median filter' , 'Gaussian filter and \n histogram stretching' , 'Histogram stretching and \n gaussian filter'])
