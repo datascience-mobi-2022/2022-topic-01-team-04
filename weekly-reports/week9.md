@@ -24,6 +24,8 @@
 
 - Wir haben rausgefunden, dass between class otsu etwas schneller ist als Within class (Unterschied von 0,5-1s). Das ist jetzt nicht sehr signifikant und wir hatten alles davor auf within class variance. Sollen wir das dann anpassen oder reicht das, wenn wir das im Report diskutieren, da 1s wirklich nicht so sonderlich viel schneller ist. 
 
+-Problem mit two level between class 
+
  - Boxplots mit matplotlib: wie kann man die stepsize auf der y achse verändern (plt.yticks() funktioniert irgnedwie nicht)? Wie kann man den mean in die Legende einfügen (bis jetzt funktioniert nur median)?
 
 ## Plans for next weeks

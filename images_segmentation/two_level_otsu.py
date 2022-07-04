@@ -321,7 +321,8 @@ def two_level_otsu_thresholding(img,x):
 
             # compute within class variance and append to list
             m_t = w0*mean_0 + w1*mean_1 + w2*mean_2 
-            wclv = w0*((mean_0 - m_t)**2)+ w1*((mean_1 - m_t)**2) + w2*((mean_2 - m_t)**2)
+            #wclv = w0*((mean_0 - m_t) ** 2)+ w1*((mean_1 - m_t) ** 2) + w2*((mean_2 - m_t) ** 2)
+            wclv = w0*w1*((mean_1-mean_0)**2) + w0*w2*((mean_2 - mean_0)**2)
             thresholds = [i,t]
             wcv.append(wclv)
             threshold.append(thresholds)
@@ -435,7 +436,7 @@ def two_level_otsu_thresholding_clip(img,x):
           
             # compute within class variance and append to list
             m_t = w0*mean_0 + w1*mean_1 + w2*mean_2 
-            wclv = w0*((mean_0 - m_t)**2)+ w1*((mean_1 - m_t)**2) + w2*((mean_2 - m_t)**2)
+            wclv = w0*w1*((mean_1-mean_0)**2) + w0*w2*((mean_2 - mean_0)**2)
             thresholds = [i,t]
             wcv.append(wclv)
             threshold.append(thresholds)
