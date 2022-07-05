@@ -1,0 +1,15 @@
+%pylab
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.ndimage
+import pandas as pd
+import seaborn as sns
+path =  (os.path.abspath(os.path.join(r'.', os.pardir)))
+import sys
+sys.path.append(path)
+from images_segmentation import otsu as ot
+from images_segmentation import dicescore as dsc
+from PIL import Image
+import os
+import os.path
