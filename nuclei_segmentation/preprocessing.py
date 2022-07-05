@@ -6,7 +6,7 @@ def package():
     import scipy.ndimage
     import pandas as pd
     import seaborn as sns
-    from images_segmentation import otsu as ot
+    from nuclei_segmentation import otsu as ot
     import numpy as np
     import os
     from PIL import Image

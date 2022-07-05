@@ -2,7 +2,7 @@
 from matplotlib import figure
 from matplotlib.pyplot import imshow
 import numpy as np
-from images_segmentation.otsu import otsu_thresholding
+from nuclei_segmentation.otsu import otsu_thresholding
 
 # crop function, can be useful outside the sliding window, returns an array equivalent to a rectangular "cut-out" of the picture :)
 def crop(image, xmin, ymin, xmax, ymax):
