@@ -1,6 +1,5 @@
 # otsu thresholding
 
-
 from cmath import nan
 
 
@@ -8,7 +7,7 @@ def otsu_thresholding_within(img,x):
     import matplotlib.pyplot
     import numpy
 
-   # load histogram, Mathematische werte aus Histogramm rausgreifen
+   # load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
   
    # initialize threshold value (T = 0) 
@@ -20,36 +19,26 @@ def otsu_thresholding_within(img,x):
     
     # set up initial values
     for i in range(0,len(n)):
-        wclv = 0
-        w0_sum = 0
-        mean_sum0 = 0
-        v0_sum = 0
-        mean_sum1 = 0
-        v1_sum = 0
-        w0 = 0
-        w1 = 0
-        w1_sum = 0
-
-        #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
+       
+        # background 
+        # compute class probabilities and mean levels
         w0_sum = numpy.sum(numpy.array(n[0:i+1]))
         mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
             
-        # background class probabilites and class mean levels
         w0 = w0_sum / sum(n)  
         if(sum(n[0:i+1]) != 0):  
              mean_0 = mean_sum0 / sum(n[0:i+1])
         else: mean_0 = 0
         
         # compute background class variance
-
         v0_sum = numpy.sum((numpy.array((bins[0:i+1]-mean_0)** 2)*numpy.array(n[0:i+1])))
         v0 = v0_sum / sum(n[0:i+1])
         
-        # sum up the probabilites of each intensity value;  and the mean value
+        # foreground
+        # compute class probabilities and mean levels 
         w1_sum = numpy.sum(numpy.array(n[i+1:len(n)]))
         mean_sum1 = numpy.sum((numpy.array(bins[i+1:len(n)])*numpy.array(n[i+1:len(n)])))
-            
-        # compute foreground class probabilities and class mean levels    
+      
         w1 = w1_sum / sum(n)
         if(sum(n[i+1:len(n)]) != 0):
             mean_1 = mean_sum1 / sum(n[i+1:len(n)])
@@ -74,8 +63,7 @@ def otsu_thresholding_within(img,x):
     while l < len(wcv):
         if wcv[l] == optimal_thres: thres = bins[l]
         l += 1
-   # index = numpy.where(numpy.array(wcv) == optimal_thres)
-    #thres = bins[index]
+
     #perform image clipping 
     copy[copy < thres] = 0
     copy[copy >= thres] = 1
