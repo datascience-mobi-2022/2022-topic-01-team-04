@@ -131,7 +131,7 @@ def otsu_thresholding(img,x):
          #   v1 = v1_sum / sum(n[i+1:len(n)])
         #else: v1 = 0
 
-        # compute within class variance and append to list
+        # compute between class variance and append to list
         bclv = w0*w1*((mean_1-mean_0)**2)
         bcv.append(bclv)
 
