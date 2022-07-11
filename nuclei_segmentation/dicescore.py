@@ -8,8 +8,8 @@ def foreground_dice(gt,pt):
     product2 = np.multiply(gt2,pt2)
     tp = np.count_nonzero(product1)
     tn = np.count_nonzero(product2)
-    all = np.prod(gt2.shape)
-    dsc = 2*tp/(tp + all-tn)
+    all = np.prod(gt2.shape)            # amount of all pixels
+    dsc = 2*tp/(tp + all-tn)            # formular dice score all-tn (= Fp+ Fn)
     return dsc
 
 def background_dice(gt, pt):
@@ -24,5 +24,5 @@ def background_dice(gt, pt):
     return dsc
 
 def dice(picture1,picture2):
-    dice = min(foreground_dice(picture1,picture2),background_dice(picture1,picture2))
+    dice = min(foreground_dice(picture1,picture2),background_dice(picture1,picture2)) # reeler Wert
     return dice
