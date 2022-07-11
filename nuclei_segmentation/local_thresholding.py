@@ -178,7 +178,7 @@ def local_thresholding_mean(image,stepsize,framesize):
             y+=stepsize
         y=0
         x+=stepsize 
-    img=crop(img,0,0,image.shape[0],image.shape[1])
+    img=img[0:image.shape[0], 0:image.shape[1]]#(img,0,0,image.shape[0],image.shape[1])
     for i, j in np.ndindex(img.shape[0], img.shape[1]):
         array[i,j,2]=array[i,j,0]/array[i,j,1]
         if img[i,j]>array[i,j,2]:
