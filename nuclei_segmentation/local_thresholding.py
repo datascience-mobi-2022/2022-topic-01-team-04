@@ -35,7 +35,7 @@ def local_thresholding_counts(image,stepsize,framesize, sensitivity):
     y=0
     while x+framesize<=img.shape[0]:
         while y+framesize<=img.shape[1]:
-            post_otsu = nanignore_otsu(img[x:x+framesize,y:y+framesize], sensitivity)
+            post_otsu = nanignore_otsu(img[x:x+framesize,y:y+framesize])
             for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
                 it[x+a,y+b,0] +=post_otsu[a,b]
                 it[x+a,y+b,1] += sensitivity
