@@ -8,11 +8,12 @@
  
  
 ## Questions
-- 
+- - Boxplots mit matplotlib: wie kann man die stepsize auf der y achse verändern (plt.yticks() funktioniert irgnedwie nicht)? Wie kann man den mean in die Legende einfügen (bis jetzt funktioniert nur median)?
 
 
 ## Plans for next weeks
 - alle programme einmal durchlaufen lassen mit kompletten optimalen preprocessing und otsu
+- nochmal preprocessing durchlaufen lassen für optimal filtersizes
 - finishh report
 - clean github
 - finish presentation
