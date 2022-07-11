@@ -59,8 +59,10 @@ def otsu_thresholding_within(img,x):
     optimal_thres = min(wcv)
 
     #select optimal threshold in the list
-    index = wcv.index(optimal_thres)
-    thres = bins[index]
+    l = 0
+    while l < len(wcv):
+       if wcv[l] == optimal_thres: thres = bins[l]
+       l += 1
 
     #perform image clipping 
     copy[copy < thres] = 0
@@ -118,14 +120,11 @@ def otsu_thresholding(img,x):
     optimal_thres = max(bcv)
 
     #select optimal threshold in the list
-    #l = 0
-    #while l < len(bcv):
-     #   if bcv[l] == optimal_thres: thres = bins[l]
-      #  l += 1
+    l = 0
+    while l < len(bcv):
+       if bcv[l] == optimal_thres: thres = bins[l]
+       l += 1
    
-    #select optimal threshold in the list
-    index = bcv.index(optimal_thres)
-    thres = bins[index]
 
     #perform image clipping 
     copy[copy < thres] = 0
