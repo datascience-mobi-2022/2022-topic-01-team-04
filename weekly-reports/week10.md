@@ -4,6 +4,7 @@
 - optimal otsu
 - presentation start (structure, brain storming, PowerPoint..)
 - report  
+- optimal filtersize NIH3T3 (gauss: 8; median: 16)
  
  
 ## Questions
