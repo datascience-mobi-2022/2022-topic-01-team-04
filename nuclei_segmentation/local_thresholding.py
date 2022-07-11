@@ -52,6 +52,7 @@ def local_thresholding_counts(image,stepsize,framesize, sensitivity):
         else:
             img[i,j]=0
     img=crop(img,0,0,image.shape[0],image.shape[1])
+
     return img
 
 
@@ -183,6 +184,7 @@ def local_thresholding_mean(image,stepsize,framesize):
             img[i,j]=1
         else:
             img[i,j]=0
+
     return img
 
       
