@@ -155,7 +155,7 @@ def pre_otsu(img,x):
         
     return thres
 
-def t_sw(image,stepsize,framesize):
+def local_thresholding_mean(image,stepsize,framesize):
 
     img=np.empty([image.shape[0]+framesize,image.shape[1]+framesize,])
     img[:]=np.NaN
