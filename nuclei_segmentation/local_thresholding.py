@@ -243,7 +243,7 @@ def local_thresholding_mean_backward(image, stepsize, framesize):
                 array[c,d,0]+=threshold
                 array[c,d,1]+=1
             y-=stepsize
-        y=image.shape[1]-framesize
+        y=image.shape[1]
         x-=stepsize
 
     return array
