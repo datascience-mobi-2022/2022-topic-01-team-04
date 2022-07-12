@@ -14,6 +14,9 @@
 ## Plans for next weeks
 - alle programme einmal durchlaufen lassen mit kompletten optimalen preprocessing und otsu
 - nochmal preprocessing durchlaufen lassen für optimal filtersizes
-- finishh report
+- finish report (results and discussion)
 - clean github
+- post processing hole filling
 - finish presentation
+- gute bilder aussuchen und besonders schlechte für visualisierung
+
