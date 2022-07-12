@@ -187,4 +187,79 @@ def local_thresholding_mean(image,stepsize,framesize):
 
     return img
 
+#forwards and backwards local thresholding: will do the same thing, forwards starts at [x,y]=[0,0] and continues right and downwards, backwards starts at the very last pixel and continues left and upwards. if joined together return smooth thresholding including the edges, take twice as much time
+
+def local_thresholding_mean_forward(image, stepsize, framesize):
+    img=np.copy(image)
+    for i,j in np.ndindex(image.shape[0], image.shape[1]):
+        img[i,j]=image[i,j]
+
+    array=np.zeros([img.shape[0],img.shape[1],3])
+    x=0
+    y=0
+    while x+framesize<=img.shape[0]:    
+        while y+framesize<=img.shape[1]:
+            post_otsu=img[x:x+framesize, y:y+framesize]
+
+            #for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
+                #it[x+a,y+b,0] +=post_otsu[a,b]
+                #it[x+a,y+b,1] += sensitivity
+
+            #window=crop(img,x,y,x+framesize, y+framesize)
+            threshold = otsu_t(post_otsu,256)
+            for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
+                c=a+x
+                d=b+y
+                array[c,d,0]+=threshold
+                array[c,d,1]+=1
+            y+=stepsize
+        y=0
+        x+=stepsize 
+
+    return array
+
+
+def local_thresholding_mean_backward(image, stepsize, framesize):
+    img=np.copy(image)
+    for i,j in np.ndindex(image.shape[0], image.shape[1]):
+        img[i,j]=image[i,j]
+
+    array=np.zeros([img.shape[0],img.shape[1],3])
+    x=image.shape[0]-framesize
+    y=image.shape[1]-framesize
+    while x+framesize<=img.shape[0]:    
+        while y+framesize<=img.shape[1]:
+            post_otsu=img[x:x+framesize, y:y+framesize]
+
+            #for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
+                #it[x+a,y+b,0] +=post_otsu[a,b]
+                #it[x+a,y+b,1] += sensitivity
+
+            #window=crop(img,x,y,x+framesize, y+framesize)
+            threshold = otsu_t(post_otsu,256)
+            for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
+                c=a+x
+                d=b+y
+                array[c,d,0]+=threshold
+                array[c,d,1]+=1
+            y-=stepsize
+        y=image.shape[1]-framesize
+        x-=stepsize
+
+    return array
+
+def local_thresholding_mean_better(img):
+    f = local_thresholding_mean_forward(img)
+    b = local_thresholding_mean_backward(img)
+    fb=f+b
+
+
+    for i, j in np.ndindex(fb.shape[0], fb.shape[1]):
+        fb[i,j,2]=fb[i,j,0]/fb[i,j,1]
+        if img[i,j]>fb[i,j,2]:
+            img[i,j]=1
+        else:
+            img[i,j]=0
+    return fb
+
       
