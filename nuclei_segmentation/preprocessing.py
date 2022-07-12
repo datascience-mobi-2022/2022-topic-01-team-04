@@ -1,26 +1,26 @@
 # Set ground truth images from N2DH-GOWT1 dataset and N2DL-HeLa dataset to 0 and 1
-def package():
 
-    import matplotlib.pyplot as plt
-    import numpy as np
-    import scipy.ndimage
-    import pandas as pd
-    import seaborn as sns
-    from nuclei_segmentation import otsu as ot
-    import numpy as np
-    import os
-    from PIL import Image
-    import os, os.path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.ndimage
+import pandas as pd
+import seaborn as sns
+            
+import numpy as np
+import os
+from PIL import Image
+import os, os.path
 
     
+# Set ground truth images from N2DH-GOWT1 dataset and N2DL-HeLa dataset to 0 and 1
+
 def binarize(x):
     img = x.copy()
 
-    for o in np.ndindex(img.shape):
-        if img[o] > 0: 
-           img[o] = 1
-        else:
-            img[o] = 0
+    img[img > 0] = 1
+    img[img <= 0] = 0
+    
     
     return img
 
