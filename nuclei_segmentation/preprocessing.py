@@ -48,13 +48,20 @@ def stretch(x):
 
 
 # Preprocessing - Boxplot
-
+  
 def dataset_boxplot(data , title , plot = True):
     import matplotlib.pyplot as plt
  
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
     ax.set_xticklabels(['No preprocessing' , 'Median filter' , 'Gaussian filter' , 'Histogram \n stretching' , 'Median filter and \n histogram stretching' , 'Histogram stretching and \n median filter' , 'Gaussian filter and \n histogram stretching' , 'Histogram stretching and \n gaussian filter'])
+    if data == data_N2DH_GOWT1:
+        ax.set_ylim([0.5 , 0.85])
+    if data == data_N2DLHeLa:
+        ax.set_ylim([0.6, 0.85])
+    if data == data_NIH3T3:
+        ax.set_ylim([0 , 1])
+
     plt.title(title , size = 18)
     plt.ylabel('Preprocessing methods' , size = 14)
     plt.xlabel('Dice score' , size = 14)
@@ -69,5 +76,5 @@ def dataset_boxplot(data , title , plot = True):
     for median in bp['medians']:
         median.set(color = 'black' , linewidth = 1)
     
+    print(bp["means"][0])
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
-  
