@@ -49,17 +49,17 @@ def stretch(x):
 
 # Preprocessing - Boxplot
   
-def dataset_boxplot(data , title , plot = True):
+def dataset_boxplot_global_otsu(data , title , yaxis , plot = True):
     import matplotlib.pyplot as plt
  
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
     ax.set_xticklabels(['No preprocessing' , 'Median filter' , 'Gaussian filter' , 'Histogram \n stretching' , 'Histogram stretching and \n median filter' , 'Histogram stretching and \n gaussian filter'])
-    if data == data_N2DH_GOWT1:
-        ax.set_ylim([0.5 , 0.85])
-    if data == data_N2DLHeLa:
+    if yaxis == 0:
+        ax.set_ylim([0 , 0.85])
+    if yaxis == 1:
         ax.set_ylim([0.6, 0.85])
-    if data == data_NIH3T3:
+    if data == 2:
         ax.set_ylim([0 , 1])
 
     plt.title(title , size = 18)
