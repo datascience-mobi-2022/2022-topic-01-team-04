@@ -225,11 +225,11 @@ def local_thresholding_mean_backward(image, stepsize, framesize):
         img[i,j]=image[i,j]
 
     array=np.zeros([img.shape[0],img.shape[1],3])
-    x=image.shape[0]-framesize
-    y=image.shape[1]-framesize
-    while x+framesize<=img.shape[0]:    
-        while y+framesize<=img.shape[1]:
-            post_otsu=img[x:x+framesize, y:y+framesize]
+    x=image.shape[0]
+    y=image.shape[1]
+    while x+framesize>=0:    
+        while y+framesize>=0:
+            post_otsu=img[x-framesize:x, y-framesize:y]
 
             #for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
                 #it[x+a,y+b,0] +=post_otsu[a,b]
@@ -238,8 +238,8 @@ def local_thresholding_mean_backward(image, stepsize, framesize):
             #window=crop(img,x,y,x+framesize, y+framesize)
             threshold = otsu_t(post_otsu,256)
             for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
-                c=a+x
-                d=b+y
+                c=a+x-framesize
+                d=b+y-framesize
                 array[c,d,0]+=threshold
                 array[c,d,1]+=1
             y-=stepsize
