@@ -69,4 +69,5 @@ def dataset_boxplot(data , title , plot = True):
     for median in bp['medians']:
         median.set(color = 'black' , linewidth = 1)
     
-    plt.legend([bp["medians"][0]] , ["median"] , loc = 'lower right')
+    plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
+  
