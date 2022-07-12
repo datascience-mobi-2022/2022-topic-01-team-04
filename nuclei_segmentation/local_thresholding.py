@@ -260,6 +260,6 @@ def local_thresholding_mean_better(img, stepsize, framesize):
             img[i,j]=1
         else:
             img[i,j]=0
-    return fb
+    return img
 
       
