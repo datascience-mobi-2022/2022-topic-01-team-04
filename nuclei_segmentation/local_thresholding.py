@@ -248,9 +248,9 @@ def local_thresholding_mean_backward(image, stepsize, framesize):
 
     return array
 
-def local_thresholding_mean_better(img):
-    f = local_thresholding_mean_forward(img)
-    b = local_thresholding_mean_backward(img)
+def local_thresholding_mean_better(img, stepsize, framesize):
+    f = local_thresholding_mean_forward(img, stepsize, framesize)
+    b = local_thresholding_mean_backward(img, stepsize, framesize)
     fb=f+b
 
 
