@@ -18,4 +18,5 @@
 - clean github
 - post processing hole filling
 - finish presentation
+- gute bilder aussuchen und besonders schlechte für visualisierung
 
