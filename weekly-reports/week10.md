@@ -16,5 +16,6 @@
 - nochmal preprocessing durchlaufen lassen für optimal filtersizes
 - finish report (results and discussion)
 - clean github
+- post processing hole filling
 - finish presentation
 
