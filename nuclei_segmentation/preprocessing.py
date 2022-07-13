@@ -59,7 +59,7 @@ def holefilling(x, y):
 
 # Preprocessing - Boxplot
   
-def dataset_boxplot_global_otsu(data , title , plot = True):
+def dataset_boxplot_otsu(data , title , plot = True):
     ymax = max(max(data))
     ymin = min(min(data))
     if ymin >= 0.05:
