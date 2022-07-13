@@ -1,11 +1,8 @@
-# Set ground truth images from N2DH-GOWT1 dataset and N2DL-HeLa dataset to 0 and 1
-
+#import all packages 
 
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.ndimage
-#import pandas as pd
-#import seaborn as sns
 import math
 import cv2           
 import numpy as np
@@ -13,10 +10,12 @@ import os
 from PIL import Image
 import os, os.path
 
-    
-# Set ground truth images from N2DH-GOWT1 dataset and N2DL-HeLa dataset to 0 and 1
-
+#binarize function for the ground truth images 
 def binarize(x):
+    """
+    This function takes an image 
+    
+    """
     img = x.copy()
 
     img[img > 0] = 1
@@ -24,8 +23,6 @@ def binarize(x):
     
     
     return img
-
-
 
 
 def stretch(x):
@@ -46,7 +43,6 @@ def stretch(x):
     return img_stretch
 
 
-
 def holefilling(x, y):
     img = x.copy()
     k1 = np.ones((y,y))
@@ -54,10 +50,6 @@ def holefilling(x, y):
     return filled
 
 
-
-
-
-# Preprocessing - Boxplot
   
 def dataset_boxplot_otsu(data , title , plot = True):
     ymax = max(max(data))
