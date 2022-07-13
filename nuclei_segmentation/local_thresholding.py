@@ -35,7 +35,6 @@ def local_thresholding_counts(image,stepsize,framesize, sensitivity):
             y+=stepsize
         y=0
         x+=stepsize
-    print(it)
     img=img[0:image.shape[0],0:image.shape[1]]
     for i, j in np.ndindex(img.shape[0], img.shape[1]):
         if it[i,j,0]>it[i,j,1]:
