@@ -5,14 +5,6 @@ import numpy as np
 from scipy import stats
 from nuclei_segmentation import otsu
 
-# crop function
-def crop(image, xmin, ymin, xmax, ymax):
-    cropped=np.empty([xmax-xmin, ymax-ymin], dtype=float)
-    for a,b in np.ndindex(xmax-xmin, ymax-ymin):
-        cropped[a,b]=image[a+xmin,b+ymin]
-    return cropped
-
-
 # otsu, ignores NaNs
 def nanignore_otsu(image):
     if np.isnan(np.sum(image)):
@@ -45,8 +37,6 @@ def local_thresholding_counts(image,stepsize,framesize, sensitivity):
     print(it)
     img=crop(img,0,0,image.shape[0],image.shape[1])
     for i, j in np.ndindex(img.shape[0], img.shape[1]):
-        #img[i,j]=round(array[i,j,0]/(2*array[i,j,1]))
-        #img[i,j]=round(it[i,j,0]/(2*it[i,j,1]))
         if it[i,j,0]>it[i,j,1]:
             img[i,j]=1
         else:
@@ -217,12 +207,6 @@ def local_thresholding_mean_backward(image, stepsize, framesize):
     while x+framesize>=0:    
         while y+framesize>=0:
             post_otsu=img[x-framesize:x, y-framesize:y]
-
-            #for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
-                #it[x+a,y+b,0] +=post_otsu[a,b]
-                #it[x+a,y+b,1] += sensitivity
-
-            #window=crop(img,x,y,x+framesize, y+framesize)
             threshold = otsu_t(post_otsu,256)
             for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
                 c=a+x-framesize
