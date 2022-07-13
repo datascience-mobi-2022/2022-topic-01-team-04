@@ -66,7 +66,7 @@ def dataset_boxplot_global_otsu(data , title , plot = True):
         floor = (math.floor(ymin * 10)) / 10 - 0.05
     else:
         floor= 0.00
-    if ymax<=0.95
+    if ymax<=0.95:
         ceil = (math.ceil(ymax * 10)) / 10 + 0.05
     else:
         ceil=1.00
