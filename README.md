@@ -37,7 +37,6 @@
         - otsu.py  
         - otsu_nonvectorized.py    
         - preprocessing.py    
-        - slidingwindow.py  
         - two_level_otsu.py  
         - complete_analysis.py  
   4. [preprocessing](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/preprocessing):  all preprocessing combination files (Mac and Windows version) 
