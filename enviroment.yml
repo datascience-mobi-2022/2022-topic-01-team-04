@@ -7,4 +7,5 @@ dependencies:
   - matplotlib
   - seaborn
   - scipy
+  - cv2
 prefix: D:\Anaconda\envs\dataanalysis0104_env
