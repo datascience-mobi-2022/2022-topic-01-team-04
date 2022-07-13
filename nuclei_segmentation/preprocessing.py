@@ -6,7 +6,7 @@ import numpy as np
 import scipy.ndimage
 import pandas as pd
 import seaborn as sns
-            
+import cv2           
 import numpy as np
 import os
 from PIL import Image
@@ -43,6 +43,15 @@ def stretch(x):
     img_min = min(intensities)
     img_stretch = (img-img_min)*(256 / (img_max-img_min))
     return img_stretch
+
+
+
+#def holefilling(x):
+    #img = x.copy()
+   # k1 = np.ones((3,3))
+    #filled = cv2.morphologyEx(img , cv2.MORPH_CLOSE, k1 )
+    #return filled
+
 
 
 
