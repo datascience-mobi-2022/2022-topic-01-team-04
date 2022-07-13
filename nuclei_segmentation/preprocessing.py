@@ -6,6 +6,7 @@ import numpy as np
 import scipy.ndimage
 import pandas as pd
 import seaborn as sns
+import math
 #import cv2           
 import numpy as np
 import os
@@ -58,17 +59,15 @@ def stretch(x):
 
 # Preprocessing - Boxplot
   
-def dataset_boxplot_global_otsu(data , title , yaxis , plot = True):
- 
+def dataset_boxplot_global_otsu(data , title , plot = True):
+    max = max(data)
+    min = min(data)
+    floor = (math.floor(min * 10)) / 10 - 0.05
+    ceil = (math.ceil(max * 10)) / 10 + 0.05
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
     ax.set_xticklabels(['No preprocessing' , 'Median filter' , 'Gaussian filter' , 'Histogram \n stretching' , 'Histogram stretching and \n median filter' , 'Histogram stretching and \n gaussian filter'])
-    if yaxis == 0:
-        ax.set_ylim([0.5 , 0.85])
-    if yaxis == 1:
-        ax.set_ylim([0.6, 0.85])
-    if data == 2:
-        ax.set_ylim([0 , 1])
+    ax.set_ylim([floor, ceil])
 
     plt.title(title , size = 18)
     plt.ylabel('Preprocessing methods' , size = 14)
