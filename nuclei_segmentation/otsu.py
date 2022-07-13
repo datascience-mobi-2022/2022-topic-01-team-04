@@ -71,10 +71,6 @@ def otsu_thresholding_within(img,x):
     return copy 
 
 
-
-from cmath import nan
-
-
 def otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
