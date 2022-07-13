@@ -47,9 +47,9 @@ def stretch(x):
 
 
 
-def holefilling(x):
+def holefilling(x, y):
     img = x.copy()
-    k1 = np.ones((3,3))
+    k1 = np.ones((y,y))
     filled = cv2.morphologyEx(img , cv2.MORPH_CLOSE, k1 )
     return filled
 
