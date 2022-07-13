@@ -62,8 +62,14 @@ def stretch(x):
 def dataset_boxplot_global_otsu(data , title , plot = True):
     ymax = max(max(data))
     ymin = min(min(data))
-    floor = (math.floor(ymin * 10)) / 10 - 0.05
-    ceil = (math.ceil(ymax * 10)) / 10 + 0.05
+    if ymin >=0.05:
+        floor = (math.floor(ymin * 10)) / 10 - 0.05
+    else:
+        floor= 0.00
+    if ymax<=0.95
+        ceil = (math.ceil(ymax * 10)) / 10 + 0.05
+    else:
+        ceil=1.00
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
     ax.set_xticklabels(['No preprocessing' , 'Median filter' , 'Gaussian filter' , 'Histogram \n stretching' , 'Histogram stretching and \n median filter' , 'Histogram stretching and \n gaussian filter'])
