@@ -4,6 +4,18 @@ from cmath import nan
 
 
 def otsu_thresholding_within(img,x):
+    """
+    This function takes an image as well as the amount of wanted thresholds and calculates the class probabilies and mean levels for 
+    foreground and background for each threshold. Then, the within class variance using the Otsu's formula is computed 
+    and the optimal threshold value is found. Lastly, the image is clipped based on the optimal threshold value and the thresholded 
+    image is returend. 
+
+    :param img: Input image
+    :param x: The number of intensity levels/ wanted thresholds
+    :return: thresholded image 
+
+    """
+    
     import matplotlib.pyplot
     import numpy
 
@@ -75,6 +87,18 @@ def otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
 
+    """
+    This function takes an image as well as the amount of wanted thresholds and calculates the class probabilies and mean levels for 
+    foreground and background for each threshold. Then, the between class variance using the Otsu's formula is computed 
+    and the optimal threshold value is found. Lastly, the image is clipped based on the optimal threshold value and the thresholded 
+    image is returend. 
+
+    :param img: Input image
+    :param x: The number of intensity levels/ wanted thresholds
+    :return: thresholded image 
+
+    """
+    
    # load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
   
