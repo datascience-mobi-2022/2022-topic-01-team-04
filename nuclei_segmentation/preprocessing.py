@@ -6,7 +6,7 @@ import numpy as np
 import scipy.ndimage
 import pandas as pd
 import seaborn as sns
-import cv2           
+#import cv2           
 import numpy as np
 import os
 from PIL import Image
