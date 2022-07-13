@@ -60,8 +60,8 @@ def stretch(x):
 # Preprocessing - Boxplot
   
 def dataset_boxplot_global_otsu(data , title , plot = True):
-    ymax = max(data)
-    ymin = min(data)
+    ymax = max(max(data))
+    ymin = min(min(data))
     floor = (math.floor(ymin * 10)) / 10 - 0.05
     ceil = (math.ceil(ymax * 10)) / 10 + 0.05
     fig_1 = plt.figure(figsize = (14 , 10))
