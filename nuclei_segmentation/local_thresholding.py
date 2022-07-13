@@ -4,6 +4,7 @@ from matplotlib.pyplot import imshow
 import numpy as np
 from scipy import stats
 from nuclei_segmentation import otsu
+from nuclei_segmentation import two_level_otsu
 
 # otsu, ignores NaNs
 def nanignore_otsu(image):
@@ -34,8 +35,7 @@ def local_thresholding_counts(image,stepsize,framesize, sensitivity):
             y+=stepsize
         y=0
         x+=stepsize
-    print(it)
-    img=crop(img,0,0,image.shape[0],image.shape[1])
+    img=img[0:image.shape[0],0:image.shape[1]]
     for i, j in np.ndindex(img.shape[0], img.shape[1]):
         if it[i,j,0]>it[i,j,1]:
             img[i,j]=1
