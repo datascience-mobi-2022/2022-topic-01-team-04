@@ -51,7 +51,7 @@ def local_thresholding_counts(image,stepsize,framesize, sensitivity):
             img[i,j]=1
         else:
             img[i,j]=0
-    img=crop(img,0,0,image.shape[0],image.shape[1])
+    img=img[0:image.shape[0],0:image.shape[1]]
 
     return img
 
@@ -137,13 +137,6 @@ def otsu_t(img,x):
     return thres
 
 def pre_otsu(img,x):
-    #counting NaNs cause I like dat
-    #count=0
-    #for i in np.ndindex(img.shape[0], img.shape[1]):
-        #if np.isnan(img[i]):
-            #count += 1
-    #print(count)
-    #if count>0:
     if np.isnan(np.sum(img)):
         img1 = img[:, ~np.isnan(img).all(axis=0)]
         img2 = img1[~np.isnan(img).all(axis=1), :]
@@ -200,12 +193,6 @@ def local_thresholding_mean_forward(image, stepsize, framesize):
     while x+framesize<=img.shape[0]:    
         while y+framesize<=img.shape[1]:
             post_otsu=img[x:x+framesize, y:y+framesize]
-
-            #for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
-                #it[x+a,y+b,0] +=post_otsu[a,b]
-                #it[x+a,y+b,1] += sensitivity
-
-            #window=crop(img,x,y,x+framesize, y+framesize)
             threshold = otsu_t(post_otsu,256)
             for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
                 c=a+x

@@ -7,7 +7,7 @@ import scipy.ndimage
 #import pandas as pd
 #import seaborn as sns
 import math
-#import cv2           
+import cv2           
 import numpy as np
 import os
 from PIL import Image
@@ -47,11 +47,11 @@ def stretch(x):
 
 
 
-#def holefilling(x):
-    #img = x.copy()
-   # k1 = np.ones((3,3))
-    #filled = cv2.morphologyEx(img , cv2.MORPH_CLOSE, k1 )
-    #return filled
+def holefilling(x, y):
+    img = x.copy()
+    k1 = np.ones((y,y))
+    filled = cv2.morphologyEx(img , cv2.MORPH_CLOSE, k1 )
+    return filled
 
 
 
@@ -59,7 +59,7 @@ def stretch(x):
 
 # Preprocessing - Boxplot
   
-def dataset_boxplot_global_otsu(data , title , plot = True):
+def dataset_boxplot_otsu(data , title , plot = True):
     ymax = max(max(data))
     ymin = min(min(data))
     if ymin >= 0.05:
