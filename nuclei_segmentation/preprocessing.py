@@ -4,8 +4,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.ndimage
-import pandas as pd
-import seaborn as sns
+#import pandas as pd
+#import seaborn as sns
 import math
 #import cv2           
 import numpy as np
