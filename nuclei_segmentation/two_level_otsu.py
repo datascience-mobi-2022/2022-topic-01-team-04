@@ -18,21 +18,7 @@ def two_level_otsu_thresholding_within(img,x):
     # set up initial values
     for i in range(0,len(n)):
         for t in range(0,len(n)):
-            wclv = 0
-            w0_sum = 0
-            mean_sum0 = 0
-            v0_sum = 0
-            mean_sum1 = 0
-            v1_sum = 0
-            w0 = 0
-            w1 = 0
-            w1_sum = 0
-            w2_sum = 0
-            w2 = 0
-            mean_sum2 = 0
-            mean_2 = 0
-            v2 = 0
-            v2_sum = 0
+            
             #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
@@ -102,13 +88,6 @@ def two_level_otsu_thresholding_within(img,x):
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
     
-    #index = numpy.where(numpy.array(wcv) == optimal_thres)
-    #thres = bins[index]
-    #perform image clipping 
-    #copy[copy < thres[0]] = 0
-    #copy[copy >= thres[0] and copy < thres[1]] = 0.5
-    #copy[copy >= thres[1]] = 1
-
     for o in numpy.ndindex(copy.shape):
         if copy[o] < (thres1): 
             copy[o] = 0
@@ -143,23 +122,7 @@ def two_level_otsu_thresholding_clip_within(img,x):
     # set up initial values
     for i in range(0,len(n)):
         for t in range(0,len(n)):
-            wclv = 0
-            mean_0 = 0
-            mean_1 = 0
-            w0_sum = 0
-            mean_sum0 = 0
-            v0_sum = 0
-            mean_sum1 = 0
-            v1_sum = 0
-            w0 = 0
-            w1 = 0
-            w1_sum = 0
-            w2_sum = 0
-            w2 = 0
-            mean_sum2 = 0
-            mean_2 = 0
-            v2 = 0
-            v2_sum = 0
+         
             #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
@@ -228,13 +191,7 @@ def two_level_otsu_thresholding_clip_within(img,x):
     thres = thres[0]
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
-    
-    #index = numpy.where(numpy.array(wcv) == optimal_thres)
-    #thres = bins[index]
-    #perform image clipping 
-    #copy[copy < thres[0]] = 0
-    #copy[copy >= thres[0] and copy < thres[1]] = 0.5
-    #copy[copy >= thres[1]] = 1
+
 
     for o in numpy.ndindex(copy.shape):
         if copy[o] < (thres1): 
@@ -263,23 +220,7 @@ def two_level_otsu_thresholding(img,x):
     # set up initial values
     for i in range(0,len(n)):
         for t in range(0,len(n)):
-            mean_0 = 0
-            mean_1 = 0
-            wclv = 0
-            w0_sum = 0
-            mean_sum0 = 0
-            v0_sum = 0
-            mean_sum1 = 0
-            v1_sum = 0
-            w0 = 0
-            w1 = 0
-            w1_sum = 0
-            w2_sum = 0
-            w2 = 0
-            mean_sum2 = 0
-            mean_2 = 0
-            v2 = 0
-            v2_sum = 0
+         
             #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
@@ -341,13 +282,6 @@ def two_level_otsu_thresholding(img,x):
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
 
-    #index = numpy.where(numpy.array(wcv) == optimal_thres)
-    #thres = bins[index]
-    #perform image clipping 
-    #copy[copy < thres[0]] = 0
-    #copy[copy >= thres[0] and copy < thres[1]] = 0.5
-    #copy[copy >= thres[1]] = 1
-
     for o in numpy.ndindex(copy.shape):
         if copy[o] < (thres1): 
             copy[o] = 0
@@ -382,21 +316,7 @@ def two_level_otsu_thresholding_clip(img,x):
     # set up initial values
     for i in range(0,len(n)):
         for t in range(0,len(n)):
-            wclv = 0
-            w0_sum = 0
-            mean_sum0 = 0
-            v0_sum = 0
-            mean_sum1 = 0
-            v1_sum = 0
-            w0 = 0
-            w1 = 0
-            w1_sum = 0
-            w2_sum = 0
-            w2 = 0
-            mean_sum2 = 0
-            mean_2 = 0
-            v2 = 0
-            v2_sum = 0
+            
             #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
@@ -455,13 +375,6 @@ def two_level_otsu_thresholding_clip(img,x):
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
     
-    #index = numpy.where(numpy.array(wcv) == optimal_thres)
-    #thres = bins[index]
-    #perform image clipping 
-    #copy[copy < thres[0]] = 0
-    #copy[copy >= thres[0] and copy < thres[1]] = 0.5
-    #copy[copy >= thres[1]] = 1
-
     for o in numpy.ndindex(copy.shape):
         if copy[o] < (thres1): 
             copy[o] = 0
