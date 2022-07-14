@@ -141,7 +141,7 @@ def local_thresholding_mean(image,stepsize,framesize):
 
     img=np.empty([image.shape[0]+framesize,image.shape[1]+framesize,])
     img[:]=np.NaN
-    #img=copy(image)
+    #img=np.copy(image)
     for i,j in np.ndindex(image.shape[0], image.shape[1]):
         img[i,j]=image[i,j]
 
@@ -150,9 +150,9 @@ def local_thresholding_mean(image,stepsize,framesize):
     y=0
     while x+framesize<=img.shape[0]:    
         while y+framesize<=img.shape[1]:
-            window=crop(img,x,y,x+framesize, y+framesize)
-            threshold = pre_otsu(window,255)
-            for a, b in np.ndindex(window.shape[0], window.shape[1]):
+            post_otsu=img[x:x+framesize, y:y+framesize]
+            threshold = otsu_t(post_otsu,256)
+            for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
                 c=a+x
                 d=b+y
                 array[c,d,0]+=threshold
