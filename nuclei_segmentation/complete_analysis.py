@@ -1,5 +1,4 @@
-%pylab
-%matplotlib inline
+
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.ndimage
@@ -10,18 +9,27 @@ from nuclei_segmentation import preprocessing as pp
 from nuclei_segmentation import local_thresholding as lt
 from nuclei_segmentation import two_level_otsu as tlo
 import statistics as st
+import os
+import os.path
+import scipy
+
+from matplotlib import pylab, mlab
+
+from IPython.core.pylabtools import figsize, getfigs
+
+from pylab import *
 
 
 def complete_analysis_global_otsu(x):
     if x == 'N2DH-GOWT1':
         
         img_N2DH_GOWT1 = []
-        path = r"data/Otsu_data/N2DH-GOWT1/img"
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DH-GOWT1\img")
         for f in os.listdir(path):
             img_N2DH_GOWT1.append(imread(os.path.join(path , f)))
 
         gt_N2DH_GOWT1 = []
-        path = r"data/Otsu_data/N2DH-GOWT1/gt"
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DH-GOWT1\gt")
         for f in os.listdir(path):
             gt_N2DH_GOWT1.append(imread(os.path.join(path , f)))
 
@@ -150,12 +158,12 @@ def complete_analysis_global_otsu(x):
     if x == 'N2DL-HeLa' :     
         
         img_N2DL_HeLa = []
-        path = r"data/Otsu_data/N2DL-HeLa/img"
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DL-HeLa\img")
         for f in os.listdir(path):
             img_N2DL_HeLa.append(imread(os.path.join(path , f)))
 
         gt_N2DL_HeLa = []
-        path = r"data/Otsu_data/N2DL-HeLa/gt"
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DL-HeLa\gt")
         for f in os.listdir(path):
             gt_N2DL_HeLa.append(imread(os.path.join(path , f)))
 
@@ -285,12 +293,12 @@ def complete_analysis_global_otsu(x):
     if x == 'NIH3T3' :
         
         img_NIH3T3 = []
-        path = r"data/Otsu_data/NIH3T3/img"
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\NIH3T3\img")
         for f in os.listdir(path):
             img_NIH3T3.append(imread(os.path.join(path , f)))
 
         gt_NIH3T3 = []
-        path = r"data/Otsu_data/NIH3T3/gt"
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\NIH3T3\gt")
         for f in os.listdir(path):
             gt_NIH3T3.append(imread(os.path.join(path , f)))
 
@@ -417,7 +425,7 @@ def complete_analysis_global_otsu(x):
 
 
 def complete_analysis_global_otsu_all(x):
-    if x == 'all'
+    if x == 'all':
         complete_analysis_global_otsu("N2DH-GOWT1")
         complete_analysis_global_otsu("N2DL-HeLa")
         complete_analysis_global_otsu("NIH3T3")
