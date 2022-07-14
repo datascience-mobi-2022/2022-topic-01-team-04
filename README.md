@@ -30,7 +30,8 @@
  
  1. [weekly reports](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/weekly-reports), [meetings](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/meetings):  notes from weekly meetings with tutor and team meetings
  2. [data](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/data):  all used data sets and ground truth images 
- 3. [nuclei_segmentation](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/nuclei_segmentation):  package with all used functions  
+ 3. [nuclei_segmentation](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/nuclei_segmentation):  package with all used functions 
+        - complete_analysis.py   
         - dicescore.py  
         - dicescore_nonvectorized.py  
         - local_thresholding.py  
@@ -38,7 +39,6 @@
         - otsu_nonvectorized.py    
         - preprocessing.py    
         - two_level_otsu.py  
-        - complete_analysis.py  
   4. [preprocessing](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/preprocessing):  all preprocessing combination files (Mac and Windows version) 
   5. [presentation](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/presentation): presentation files
   6. [report](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/report):  report files
