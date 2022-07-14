@@ -25,6 +25,7 @@ def binarize(x):
     return img
 
 
+
 def stretch(x):
     intensities = []
    
