@@ -29,7 +29,7 @@ def otsu_thresholding_within(img,x):
     # create list to store values of within class variance for each threshold value
     wcv = list()
     
-    # set up initial values
+    # calculate each within class variance for each possible threshold
     for i in range(0,len(n)):
        
         # background 
@@ -109,7 +109,7 @@ def otsu_thresholding(img,x):
     # create list to store values of between class variance for each threshold value
     bcv = list()
     
-    # set up initial values
+    # calculate each between class variance for each possible threshold
     for i in range(0,len(n)):
 
         # background 

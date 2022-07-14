@@ -11,24 +11,28 @@
 #### **8.** segmented output image received
 
 
-
-
-
-# otsu thresholding
-
-
 from cmath import nan
 
 
 def otsu_thresholding(img,x):
     import matplotlib.pyplot
     import numpy
-#bins optimieren.... alles zu 0-255 machen
+    """
+    This function takes an image as well as the amount of wanted thresholds and calculates the class probabilies and mean levels for 
+    foreground and background for each threshold. Then, the within class variance using the Otsu thresholding formula is computed 
+    and the optimal threshold value is found. Lastly, the image is clipped based on the optimal threshold value and the thresholded 
+    image is returend. 
 
-#img = img[~numpy.isnan(img)]
-   # load histogram, Mathematische werte aus Histogramm rausgreifen
+    :param img: Input image
+    :param x: The number of intensity levels/ wanted thresholds
+    :return: thresholded image 
+
+    """
+
+
+    # load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
-    #range=(bins.min(),bins.max())
+   
    # initialize threshold value (T = 0) 
     thres = 0
     copy = img.copy()
@@ -36,21 +40,11 @@ def otsu_thresholding(img,x):
     # create list to store values of within class variance for each threshold value
     wcv = list()
     
-    # set up initial values
+    # calculate each within class variance for each possible threshold
     for i in range(0,len(n)):
-        wclv = 0
-        w0_sum = 0
-        mean_sum0 = 0
-        v0_sum = 0
-        mean_sum1 = 0
-        v1_sum = 0
-        w0 = 0
-        w1 = 0
-        w1_sum = 0
-
-        #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
+        
         for j in range(0,i+1):
-            #if(n[j] != nan & bins[j] != nan): 
+           
                 w0_sum += n[j]
                 mean_sum0 += bins[j]*n[j]
             
@@ -62,14 +56,15 @@ def otsu_thresholding(img,x):
         
         # compute background class variance
         for m in range(0,i+1):
-            #if(n[m] != nan & bins[m] != nan): 
+        
                 v0_sum += ((bins[m]-mean_0)** 2) * n[m]
         
         v0 = v0_sum / sum(n[0:i+1])
         
+        #foreground
         # sum up the probabilites of each intensity value;  and the mean value
         for k in range(i+1, len(n)): 
-            #if(n[k] != nan & bins[k] != nan): 
+            
                 w1_sum += n[k]
           
                 mean_sum1 += bins[k]*n[k]
@@ -82,7 +77,7 @@ def otsu_thresholding(img,x):
         else: mean_1 = 0
         # compute foreground class variance 
         for s in range(i+1,len(n)):
-            #if(n[s] != nan & bins[s] != nan): 
+           
                 v1_sum += ((bins[s]-mean_1) ** 2) * n[s]
         if( sum(n[i+1:len(n)]) != 0):
             v1 = v1_sum / sum(n[i+1:len(n)])
