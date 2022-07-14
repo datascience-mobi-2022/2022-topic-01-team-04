@@ -1,28 +1,83 @@
 import numpy as np
 
-def foreground_dice(gt,pt):
-    #gt and pt are numpy arrays containing pixel intensities
-    product1 = np.multiply(gt,pt)
-    gt2 = gt-1
-    pt2 = pt-1
-    product2 = np.multiply(gt2,pt2)
-    tp = np.count_nonzero(product1)
-    tn = np.count_nonzero(product2)
-    all = np.prod(gt2.shape)            # amount of all pixels
-    dsc = 2*tp/(tp + all-tn)            # formular dice score all-tn (= Fp+ Fn)
-    return dsc
 
-def background_dice(gt, pt):
+#note: for dice (vectorized) binary arrays are used, therefore white pixels carry a value of 1 and black ones 0
+
+#foreground dice considers pixels with intensity 1 as positive and 0 as negative
+def foreground_dice(arr1,arr2):
+
+    """
+    This function calculates the dice score coefficient for binary (values either 0 or 1) two-dimensional arrays.
+    It considers the overlap of 1's of two arrays of the same size. 
+    Firstly, it counts true positives as the number of 1's in a product array of both input arrays.
+    Secondly, it counts true negatives as the number of 1's in a second product array, where before multiplication 1 is substracted from each input array.
+    Lastly, the algorithm calculates and returns the dice score coefficient
+
+    :param arr1: Input array 1
+    :param arr2: Input array 2
+
+    
+    """
+    
+    #multiply ground truth and thresholded arrays
     product1 = np.multiply(gt,pt)
-    gt2 = gt-1
-    pt2 = pt-1
-    product2 = np.multiply(gt2,pt2)
-    tn = np.count_nonzero(product1)
-    tp = np.count_nonzero(product2)
-    all = np.prod(gt2.shape)
+    
+    #reassign pixel values, so that positive = 0, negative = 1
+    arr12 = arr1-1
+    arr22 = arr2-1
+
+    #multiply reassigned arrays
+    product2 = np.multiply(arr12,arr22)
+
+    #count true positives as the number of pixels that return a product of 1 (non zero) in the multiplication matrix
+    tp = np.count_nonzero(product1)
+    #count true negatives as the number of pixels that return a product of 1 (non zero) in the multplication matrix of the reassigned arrays
+    tn = np.count_nonzero(product2)
+    #count number of pixels in an image
+    all = np.prod(arr2.shape)
+    #calculate the dice score (fp+fn = all-tp-tn)
     dsc = 2*tp/(tp + all-tn)
     return dsc
 
-def dice(picture1,picture2):
-    dice = min(foreground_dice(picture1,picture2),background_dice(picture1,picture2)) # reeler Wert
+#background dice considers pixels with intensity 0 as positive and 1 as negative
+
+def background_dice(arr1, arr2):
+
+    """
+    This function calculates the dice score coefficient for binary (values either 0 or 1) two-dimensional arrays.
+    It considers the overlap of 0's of two arrays of the same size. 
+    Firstly, it counts true negatives as the number of 1's in a product array of both input arrays.
+    Secondly, it counts true positives as the number of 1's in a second product array, where before multiplication 1 is substracted from each input array.
+    Lastly, the algorithm calculates and returns the dice score coefficient
+
+    :param arr1: Input array 1
+    :param arr2: Input array 2
+    """
+
+    product1 = np.multiply(arr1,arr2)
+    arr12 = arr1-1
+    arr22 = arr2-1
+    product2 = np.multiply(arr12,arr22)
+
+    # count true negatives as the number of non-zeros (1's) in the product array of the original arrays
+    tn = np.count_nonzero(product1)
+    #count true positives as the number of non-zeros (1's) in the product array of reassigned arrays
+    tp = np.count_nonzero(product2)
+    #count number of pixels in an image
+    all = np.prod(arr2.shape)
+    #calculate the dice score coefficient
+    dsc = 2*tp/(tp + all-tn)
+    return dsc
+
+#define dice function to return the minimum of both dice scores
+def dice(arr1,arr2):
+
+    """
+    This function returns the dice score coefficient of two binary two-dimensional arrays of the same size,
+    by calculating it for the overlap of 1's and 0's separately and returning the minimum of both coefficients.
+
+    :param arr1: Input array 1
+    :param arr2: Input array 2
+    """
+    dice = min(foreground_dice(arr1,arr2),background_dice(arr1,arr2))
     return dice
