@@ -112,7 +112,7 @@ def two_level_local_thresholding_mean(image,stepsize,framesize):
     while x+framesize<=img.shape[0]:    
         while y+framesize<=img.shape[1]:
             post_otsu=img[x:x+framesize, y:y+framesize]
-            threshold = nanignore_otsu_two_level_mean(post_otsu,256)
+            threshold = nanignore_otsu_two_level_mean(post_otsu)
             for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
                 c=a+x
                 d=b+y
