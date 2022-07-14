@@ -123,13 +123,13 @@ def two_level_local_thresholding_mean(image,stepsize,framesize):
         y=0
         x+=stepsize 
     img=img[0:image.shape[0], 0:image.shape[1]]#(img,0,0,image.shape[0],image.shape[1])
-    for o in np.ndindex(img.shape):
-        if img[o]<array[o,0]/array[o,2]:
-            img[o]=0
-        elif img[o]>=array[o,0]/array[o,2] and img[o]<array[o,1]/array[o,2]:
-            img[o]=1
+    for i,j in np.ndindex(img.shape):
+        if img[i,j]<array[i,j,0]/array[i,j,2]:
+            img[i,j]=0
+        elif img[i,j]>=array[i,j,0]/array[i,j,2] and img[i,j]<array[i,j,1]/array[i,j,2]:
+            img[i,j]=1
         else:
-            img[o]=0
+            img[i,j]=0
 
     return img
 
