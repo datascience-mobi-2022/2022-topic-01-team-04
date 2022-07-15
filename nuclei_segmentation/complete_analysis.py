@@ -152,7 +152,7 @@ def complete_analysis_global_otsu(x):
 
         data_N2DH_GOWT1 = [dice_otsu_img_N2DH_GOWT1 , dice_otsu_median_img_N2DH_GOWT1 , dice_otsu_gauss_img_N2DH_GOWT1 , dice_otsu_stretch_img_N2DH_GOWT1  , optimal_dice_stretch_median  , optimal_dice_stretch_gauss]
 
-        boxplot = pp.dataset_boxplot_otsu(data_N2DH_GOWT1 , 'Preprocessing methods - N2DH-GOWT1')
+        boxplot = pp.dataset_boxplot_otsu(data_N2DH_GOWT1 , 'Preprocessing methods - N2DH-GOWT1 - Global Otsu Thresholding')
     
     
     if x == 'N2DL-HeLa' :     
@@ -287,7 +287,7 @@ def complete_analysis_global_otsu(x):
 
         data_N2DLHeLa = [dice_otsu_img_N2DL_HeLa , dice_otsu_median_img_N2DL_HeLa , dice_otsu_gauss_img_N2DL_HeLa , dice_otsu_stretch_img_N2DL_HeLa , optimal_dice_stretch_median , optimal_dice_stretch_gauss]
 
-        boxplot = pp.dataset_boxplot_otsu(data_N2DLHeLa , 'Preprocessing methods - N2DL-HeLa')
+        boxplot = pp.dataset_boxplot_otsu(data_N2DLHeLa , 'Preprocessing methods - N2DL-HeLa - Global Otsu Thresholding')
 
     
     if x == 'NIH3T3' :
@@ -419,7 +419,7 @@ def complete_analysis_global_otsu(x):
 
         data_NIH3T3 = [dice_otsu_img_NIH3T3 , dice_otsu_median_img_NIH3T3 , dice_otsu_gauss_img_NIH3T3 , dice_otsu_stretch_img_NIH3T3 , optimal_dice_stretch_median , optimal_dice_stretch_gauss]
 
-        boxplot = pp.dataset_boxplot_otsu(data_NIH3T3 , 'Preprocessing methods - NIH3T3')
+        boxplot = pp.dataset_boxplot_otsu(data_NIH3T3 , 'Preprocessing methods - NIH3T3 - Global Otsu Thresholding')
         
     return boxplot
 
