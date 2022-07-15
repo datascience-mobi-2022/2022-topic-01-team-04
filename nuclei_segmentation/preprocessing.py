@@ -113,7 +113,6 @@ def dataset_boxplot_otsu(data , title , plot = True):
     for median in bp['medians']:
         median.set(color = 'black' , linewidth = 1)
     
-    #print boxplot
     print(bp["means"][0])
 
     #add legend 
