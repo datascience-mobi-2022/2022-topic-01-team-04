@@ -125,6 +125,7 @@ def subplot(image1, image2, plot=True):
    
     ax[0].imshow(image1)
     ax[1].imshow(image2)
+    plt.axis('off')
 
     plt.tight_layout()
 
