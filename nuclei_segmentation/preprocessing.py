@@ -142,7 +142,7 @@ def subplot_two(image1, image2, plot=True):
     plt.tight_layout()
 
 
-def subplot_four(image1, image2, image3, image4 plot=True):
+def subplot_four(image1, image2, image3, image4, plot=True):
     
     fig, ax = plt.subplots(2, 2, figsize=(100,100))
    
