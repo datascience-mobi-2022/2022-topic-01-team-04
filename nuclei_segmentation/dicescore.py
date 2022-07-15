@@ -20,7 +20,7 @@ def foreground_dice(arr1,arr2):
     """
     
     #multiply ground truth and thresholded arrays
-    product1 = np.multiply(gt,pt)
+    product1 = np.multiply(arr1,arr2)
     
     #reassign pixel values, so that positive = 0, negative = 1
     arr12 = arr1-1
