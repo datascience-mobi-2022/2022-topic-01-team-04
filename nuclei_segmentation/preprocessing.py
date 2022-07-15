@@ -118,6 +118,7 @@ def dataset_boxplot_otsu(data , title , plot = True):
     #add legend 
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
 
+
 def subplot(image1, image2, image3, title1, title2, title3, plot=True):
     fig, ax = plt.subplots(1, 3, figsize=(10,900))
    
@@ -131,5 +132,4 @@ def subplot(image1, image2, image3, title1, title2, title3, plot=True):
     ax[1].set_axis_off()
     ax[2].set_axis_off()
     plt.tight_layout()
-    fig.show()
 
