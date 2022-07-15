@@ -100,8 +100,8 @@ def dataset_boxplot_otsu(data , title , plot = True):
     ax.set_ylim([0, 1])
 
     plt.title(title , size = 18)
-    plt.ylabel('Preprocessing methods' , size = 14)
-    plt.xlabel('Dice score' , size = 14)
+    plt.ylabel('Dice score' , size = 14)
+    plt.xlabel('Preprocessing methods' , size = 14)
 
 
     bp = ax.boxplot(data, patch_artist = True , showmeans = True , meanline = True , meanprops = dict(color = "white" , linewidth = 1.5))
