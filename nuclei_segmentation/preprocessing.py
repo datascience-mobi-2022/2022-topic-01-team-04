@@ -130,3 +130,26 @@ def subplot(image1, image2,image3, plot=True):
 
     plt.tight_layout()
 
+
+def subplot_two(image1, image2, plot=True):
+    
+    fig, ax = plt.subplots(1, 2, figsize=(100,100))
+   
+    ax[0][0].imshow(image1)
+    ax[0][1].imshow(image2)
+    plt.axis('off')
+
+    plt.tight_layout()
+
+
+def subplot_four(image1, image2, image3, image4 plot=True):
+    
+    fig, ax = plt.subplots(2, 2, figsize=(100,100))
+   
+    ax[0][0].imshow(image1)
+    ax[0][1].imshow(image2)
+    ax[1][0].imshow(image3)
+    ax[1][1].imshow(image4)
+    plt.axis('off')
+
+    plt.tight_layout()
