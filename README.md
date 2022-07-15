@@ -36,9 +36,11 @@
         - dicescore_nonvectorized.py  
         - local_thresholding.py  
         - otsu.py  
-        - otsu_nonvectorized.py    
+        - otsu_nonvectorized.py  
+        - optimal_otsu.py
         - preprocessing.py    
         - two_level_otsu.py  
+        - two_level_local_thresholding.py
   4. [preprocessing](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/preprocessing):  all preprocessing combination files (Mac and Windows version) 
   5. [presentation](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/presentation): presentation files
   6. [report](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/report):  report files
