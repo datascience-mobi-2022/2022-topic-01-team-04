@@ -8,40 +8,60 @@ from nuclei_segmentation import two_level_otsu
 
 # otsu, ignores NaNs
 def nanignore_otsu(image):
+    #if the array contains NaN values
     if np.isnan(np.sum(image)):
+
+        #remove columns and rows that contain NaN values
         img1 = image[:, ~np.isnan(image).all(axis=0)]
         img2 = img1[~np.isnan(image).all(axis=1), :]
+
+        #apply otsu thresholding
         img=otsu.otsu_thresholding(img2, 256)
     else :
+
+        #apply otsu thresholding
         img=otsu.otsu_thresholding(image, 256)
     return img
 
-#local thresholding, counts assignment to foreground
-
+#local thresholding, counts how many times a pixel has been assigned to foreground or background#
+#if the proportion foreground_assignment/(foreground_assgnment+background_assignment) is over a set percentile (sensitivity), the pixel is assigned to foreground
 def local_thresholding_counts(image,stepsize,framesize, sensitivity):
+
+    # add an empty bottom right edge to the array, so that some frames can be  for pixels located on the far right or very bottom of the image 
     img=np.empty([image.shape[0]+framesize,image.shape[1]+framesize,])
     img[:]=np.NaN
     for i,j in np.ndindex(image.shape[0], image.shape[1]):
         img[i,j]=image[i,j]
+
+    #create a new array to count the foreground/background assignment of each pixel
     it=np.zeros([img.shape[0],img.shape[1],2])
     x=0
     y=0
+
+    # iterate over the image (sliding window)
     while x+framesize<=img.shape[0]:
         while y+framesize<=img.shape[1]:
+
+            #perform thresholding on the part of an image
             post_otsu = nanignore_otsu(img[x:x+framesize,y:y+framesize])
+            #transfer the foreground/background assignment for each pixel position to according position in the it array
             for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
                 it[x+a,y+b,0] +=post_otsu[a,b]
                 it[x+a,y+b,1] += sensitivity
             y+=stepsize
         y=0
         x+=stepsize
+    #redefine image to remove the NaN edges
     img=img[0:image.shape[0],0:image.shape[1]]
+    
+    #for every pixel compare the proportion foreground/(foreground+background)
     for i, j in np.ndindex(img.shape[0], img.shape[1]):
+        #if proportion is larger than the chosen percentile (sensitivity), assign it to foreground, set intensity
         if it[i,j,0]>it[i,j,1]:
             img[i,j]=1
+        #if proportion is smaller than the chosen percentile, assign it to background, set intensity
         else:
             img[i,j]=0
-    img=img[0:image.shape[0],0:image.shape[1]]
 
     return img
 
@@ -126,6 +146,7 @@ def otsu_t(img,x):
         
     return thres
 
+#otsu thresholding which ignores NaN values for the local_thresholding_mean function
 def pre_otsu(img,x):
     if np.isnan(np.sum(img)):
         img1 = img[:, ~np.isnan(img).all(axis=0)]
@@ -141,17 +162,25 @@ def local_thresholding_mean(image,stepsize,framesize):
 
     img=np.empty([image.shape[0]+framesize,image.shape[1]+framesize,])
     img[:]=np.NaN
-    #img=np.copy(image)
     for i,j in np.ndindex(image.shape[0], image.shape[1]):
         img[i,j]=image[i,j]
 
+    #initiate a 3-dimensional array to store unique threshold values, number of times thresholding has been performed in set pixel positon and calculated average threshold values for each pixel position 
     array=np.zeros([img.shape[0],img.shape[1],3])
     x=0
     y=0
+
+    #iterate over image
     while x+framesize<=img.shape[0]:    
         while y+framesize<=img.shape[1]:
+
+            #define the frame to which thresholding is applied
             post_otsu=img[x:x+framesize, y:y+framesize]
+
+            #apply otsu thresholding which ignores NaN values to the frame
             threshold = pre_otsu(post_otsu,256)
+            
+            #add up unique threshold values and number of unique thresholds for pixels in the according unique pixel positions in the 3-dimensional array
             for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
                 c=a+x
                 d=b+y
@@ -160,17 +189,27 @@ def local_thresholding_mean(image,stepsize,framesize):
             y+=stepsize
         y=0
         x+=stepsize 
-    img=img[0:image.shape[0], 0:image.shape[1]]#(img,0,0,image.shape[0],image.shape[1])
+    
+    #remove the NaN edge
+    img=img[0:image.shape[0], 0:image.shape[1]]
+
+    #for each pixel calculate the average threshold and store into array
     for i, j in np.ndindex(img.shape[0], img.shape[1]):
         array[i,j,2]=array[i,j,0]/array[i,j,1]
+
+        #if the pixel intensity in original image is above the average threshold, assign it to foreground (set intensity to 1)
         if img[i,j]>array[i,j,2]:
             img[i,j]=1
+
+        #if the pixel intensity in original image is below or the same as the average threshold, assign it to background (set intensity to 0)
         else:
             img[i,j]=0
 
     return img
 
-#forwards and backwards local thresholding: will do the same thing, forwards starts at [x,y]=[0,0] and continues right and downwards, backwards starts at the very last pixel and continues left and upwards. if joined together return smooth thresholding including the edges, take twice as much time
+# Forwards and backwards local thresholding: does the same thing as average (mean) thresholding without adding the NaN edge, forwards starts at [x,y]=[0,0] and continues right and downwards, backwards starts at the very last pixel and continues left and upwards
+# If joined together return smooth thresholding including the edges, except for top left and bottom right corners.
+# The joined function takes twice as much time as previously defined local adaptive thresholding algorithms
 
 def local_thresholding_mean_forward(image, stepsize, framesize):
     img=np.copy(image)

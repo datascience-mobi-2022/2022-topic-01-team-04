@@ -4,7 +4,7 @@ from matplotlib.pyplot import imshow
 import numpy as np
 from scipy import stats
 from nuclei_segmentation import two_level_otsu
-
+from cmath import nan 
 
 # average threshold
 
@@ -31,10 +31,13 @@ def tlot(img,x):
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
                 
             # background class probabilites and class mean levels
-            w0 = w0_sum / sum(n)  
+            #w0 = w0_sum / sum(n)  
             if(sum(n[0:i+1]) != 0):  
+                w0 = w0_sum / sum(n)  
                 mean_0 = mean_sum0 / sum(n[0:i+1])
-            else: mean_0 = 0
+            else: 
+                mean_0 = 0
+                w0 = 0
             
             # compute background class variance
 
@@ -44,10 +47,14 @@ def tlot(img,x):
             mean_sum1 = numpy.sum((numpy.array(bins[i+1:t])*numpy.array(n[i+1:t])))
                 
             # compute foreground class probabilities and class mean levels    
-            w1 = w1_sum / sum(n)
+            #w1 = w1_sum / sum(n)
             if(sum(n[i+1:t]) != 0):
+                w1 = w1_sum / sum(n)
                 mean_1 = mean_sum1 / sum(n[i+1:t])
-            else: mean_1 = 0
+
+            else:
+                w1 = 0
+                mean_1 = 0
 
             # compute foreground class variance 
             
@@ -56,10 +63,13 @@ def tlot(img,x):
             mean_sum2 = numpy.sum((numpy.array(bins[t:len(n)])*numpy.array(n[t:len(n)])))
                 
             # compute foreground class probabilities and class mean levels    
-            w2 = w2_sum / sum(n)
+            #w2 = w2_sum / sum(n)
             if(sum(n[t:len(n)]) != 0):
+                w2 = w2_sum / sum(n)
                 mean_2 = mean_sum2 / sum(n[t:len(n)])
-            else: mean_2 = 0
+            else:
+                mean_2 = 0
+                w2 = 0
 
             # compute foreground class variance 
           
@@ -112,7 +122,7 @@ def two_level_local_thresholding_mean(image,stepsize,framesize):
     while x+framesize<=img.shape[0]:    
         while y+framesize<=img.shape[1]:
             post_otsu=img[x:x+framesize, y:y+framesize]
-            threshold = nanignore_otsu_two_level_mean(post_otsu,256)
+            threshold = nanignore_otsu_two_level_mean(post_otsu)
             for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
                 c=a+x
                 d=b+y
