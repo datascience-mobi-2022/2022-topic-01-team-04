@@ -89,9 +89,9 @@ def two_level_otsu_thresholding_within(img,x):
     thres2  = bins[thres[1]]
     
     for o in numpy.ndindex(copy.shape):
-        if copy[o] < (thres1): 
+        if copy[o] <= (thres1): 
             copy[o] = 0
-        elif copy[o] >= thres1 and copy[o] < thres2:  
+        elif copy[o] > thres1 and copy[o] <= thres2:  
             copy[o] = 1
         else: 
             copy[o] = 1
@@ -194,9 +194,9 @@ def two_level_otsu_thresholding_clip_within(img,x):
 
 
     for o in numpy.ndindex(copy.shape):
-        if copy[o] < (thres1): 
+        if copy[o] <= (thres1): 
             copy[o] = 0
-        elif copy[o] >= thres1 and copy[o] < thres2:  
+        elif copy[o] > thres1 and copy[o] <= thres2:  
             copy[o] = 1
         else: 
             copy[o] = 0
@@ -283,9 +283,9 @@ def two_level_otsu_thresholding(img,x):
     thres2  = bins[thres[1]]
 
     for o in numpy.ndindex(copy.shape):
-        if copy[o] < (thres1): 
+        if copy[o] <= (thres1): 
             copy[o] = 0
-        elif copy[o] >= thres1 and copy[o] < thres2:  
+        elif copy[o] > thres1 and copy[o] <= thres2:  
             copy[o] = 1
         else: 
             copy[o] = 1
@@ -376,9 +376,9 @@ def two_level_otsu_thresholding_clip(img,x):
     thres2  = bins[thres[1]]
     
     for o in numpy.ndindex(copy.shape):
-        if copy[o] < (thres1): 
+        if copy[o] <= (thres1): 
             copy[o] = 0
-        elif copy[o] >= thres1 and copy[o] < thres2:  
+        elif copy[o] > thres1 and copy[o] <= thres2:  
             copy[o] = 1
         else: 
             copy[o] = 0
