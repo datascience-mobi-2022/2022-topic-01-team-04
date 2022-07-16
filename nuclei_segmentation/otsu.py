@@ -77,8 +77,8 @@ def otsu_thresholding_within(img,x):
        l += 1
 
     #perform image clipping 
-    copy[copy < thres] = 0
-    copy[copy >= thres] = 1
+    copy[copy <= thres] = 0
+    copy[copy > thres] = 1
 
     return copy 
 
@@ -147,7 +147,7 @@ def otsu_thresholding(img,x):
    
 
     #perform image clipping 
-    copy[copy < thres] = 0
-    copy[copy >= thres] = 1
+    copy[copy <= thres] = 0
+    copy[copy > thres] = 1
 
     return copy 
