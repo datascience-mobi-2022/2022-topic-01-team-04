@@ -27,7 +27,7 @@ def dataset_boxplot_optimal_NIH3T3(plot = True):
     data = [aa, ba, ca, da]
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
-    ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching median' , 'Two-level Otsu thresholding \n no preprocessing', 'Two-level Otsu thresholding clip \n no preprocessing', ' Local adaptive Otsu thresholding average \n gaussian filter and histogram stretching' ])
+    ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching and median filter' , 'Two-level Otsu thresholding \n no preprocessing', 'Two-level Otsu thresholding clip \n no preprocessing', ' Local adaptive Otsu thresholding average \n histogram stretchingand gaussian filter' ])
     ax.set_ylim([0, 1])
 
     plt.title('Optimal Otsu thresholding method - NIH3T3', size = 18)
@@ -89,7 +89,7 @@ def dataset_boxplot_optimal_N2DL_HeLa (plot= True):
     
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
-    ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching median' , 'Two-level Otsu thresholding\n histogram stretching',  'Local adaptive Otsu thresholding average \n median filter and histogram stretching'])
+    ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching and median filter' , 'Two-level Otsu thresholding\n histogram stretching',  'Local adaptive Otsu thresholding average \n histogram stretching and median filter'])
     ax.set_ylim([0, 1])
 
     plt.title( 'Optimal Otsu thresholding method - N2DL-HeLa' , size = 18)
