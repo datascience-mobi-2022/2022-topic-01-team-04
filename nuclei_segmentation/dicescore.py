@@ -1,12 +1,13 @@
 import numpy as np
 
 
-#note: for dice (vectorized) binary arrays are used, therefore white pixels carry a value of 1 and black ones 0
+#IMPORTANT: due to vectorization, for computation of the dice similarity coefficient binary arrays have to be used
 
 #foreground dice considers pixels with intensity 1 as positive and 0 as negative
 def foreground_dice(arr1,arr2):
 
     """
+    ### Dice similarity coefficient for foreground overlap
     This function calculates the dice score coefficient for binary (values either 0 or 1) two-dimensional arrays.
     It considers the overlap of 1's of two arrays of the same size. 
     Firstly, it counts true positives as the number of 1's in a product array of both input arrays.
@@ -15,6 +16,7 @@ def foreground_dice(arr1,arr2):
 
     :param arr1: Input array 1
     :param arr2: Input array 2
+    :return: Dice similarity coefficient
 
     
     """
@@ -44,6 +46,7 @@ def foreground_dice(arr1,arr2):
 def background_dice(arr1, arr2):
 
     """
+    ### Dice similarity coefficient for background overlap
     This function calculates the dice score coefficient for binary (values either 0 or 1) two-dimensional arrays.
     It considers the overlap of 0's of two arrays of the same size. 
     Firstly, it counts true negatives as the number of 1's in a product array of both input arrays.
@@ -52,6 +55,7 @@ def background_dice(arr1, arr2):
 
     :param arr1: Input array 1
     :param arr2: Input array 2
+    :return: Dice similarity coefficient
     """
 
     product1 = np.multiply(arr1,arr2)
@@ -73,11 +77,13 @@ def background_dice(arr1, arr2):
 def dice(arr1,arr2):
 
     """
-    This function returns the dice score coefficient of two binary two-dimensional arrays of the same size,
-    by calculating it for the overlap of 1's and 0's separately and returning the minimum of both coefficients.
+    ### Dice similarity coefficient
+    This function returns the Dice similarity coefficient of two binary two-dimensional arrays of the same size,
+    by calculating it for the overlap of 1's (foreground) and 0's (background) separately and returning the minimum of both coefficients.
 
     :param arr1: Input array 1
     :param arr2: Input array 2
+    :return: Dice similarity coefficient
     """
     dice = min(foreground_dice(arr1,arr2),background_dice(arr1,arr2))
     return dice

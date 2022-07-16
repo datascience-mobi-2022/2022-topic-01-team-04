@@ -28,7 +28,7 @@ def b_dice(x, gt_list, pt_list):
             if pt[x,y]==0:
                 #add it to the true positive variable
                 tp+=1
-            #count all other pixel kinds
+            #count all other pixel types
             else:
                 fn+=1
         else:
