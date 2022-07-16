@@ -139,7 +139,7 @@ def two_level_local_thresholding_mean(image,stepsize,framesize):
         elif img[i,j]>=array[i,j,0]/array[i,j,2] and img[i,j]<array[i,j,1]/array[i,j,2]:
             img[i,j]=1
         else:
-            img[i,j]=0
+            img[i,j]=1
 
     return img
 
