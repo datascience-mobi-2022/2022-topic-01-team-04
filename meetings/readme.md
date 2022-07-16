@@ -1,3 +1,3 @@
 # Meetings
 
-Here you can find our meeting notes from our team meetings. 
+Here you can find the meeting notes from our team meetings. 
