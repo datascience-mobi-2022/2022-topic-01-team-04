@@ -27,12 +27,12 @@ def dataset_boxplot_optimal_NIH3T3(plot = True):
     data = [aa, ba, ca, da]
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
-    ax.set_xticklabels(['global otsu \n histogram stretching median' , 'two level otsu \n no preprocessing', 'two level otsu clip \n no preprocessing', ' local adaptive thresholding average \n gaussian filter and histogram stretching' ])
+    ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching median' , 'Two-level Otsu thresholding \n no preprocessing', 'Two-level Otsu thresholding clip \n no preprocessing', ' Local adaptive Otsu thresholding average \n gaussian filter and histogram stretching' ])
     ax.set_ylim([0, 1])
 
-    plt.title('optimal Otsu NIH3T3', size = 18)
-    plt.ylabel('Optimal Otsu' , size = 14)
-    plt.xlabel('Dice score' , size = 14)
+    plt.title('Optimal Otsu thresholding method - NIH3T3', size = 18)
+    plt.ylabel('Dice score' , size = 14)
+    plt.xlabel('Otsu thresholding methods' , size = 14)
 
 
     bp = ax.boxplot(data, patch_artist = True , showmeans = True , meanline = True , meanprops = dict(color = "white" , linewidth = 1.5))
@@ -48,7 +48,7 @@ def dataset_boxplot_optimal_NIH3T3(plot = True):
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
 
 
-def dataset_boxplot_optimal_N2DH_GOWT1 ( plot = True):
+def dataset_boxplot_optimal_N2DH_GOWT1 (plot = True):
 
     ab = [0.6573057536130297, 0.8889624027757476, 0.8888822505843782, 0.8840789866507442, 0.8466965877165696, 0.915678984885556]
     bb = [0.9012671046140265, 0.8003354141432963, 0.8060750740862693, 0.8040329829223495, 0.9048154915767894, 0.9191552972412177]
@@ -57,12 +57,12 @@ def dataset_boxplot_optimal_N2DH_GOWT1 ( plot = True):
 
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
-    ax.set_xticklabels(['global otsu \n histogram stretching' , 'two level otsu \n median filter'])
+    ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching' , 'Two-level Otsu thresholding \n median filter'])
     ax.set_ylim([0, 1])
 
-    plt.title( 'Optimal Otsu N2DH-GOWT1' , size = 18)
-    plt.ylabel('optimal Otsu' , size = 14)
-    plt.xlabel('Dice score' , size = 14)
+    plt.title( 'Optimal Otsu thresholding method - N2DH-GOWT1' , size = 18)
+    plt.ylabel('Dice score' , size = 14)
+    plt.xlabel('Otsu thresholding methods' , size = 14)
 
 
     bp = ax.boxplot(data, patch_artist = True , showmeans = True , meanline = True , meanprops = dict(color = "white" , linewidth = 1.5))
@@ -78,7 +78,7 @@ def dataset_boxplot_optimal_N2DH_GOWT1 ( plot = True):
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
 
 
-def dataset_boxplot_optimal_N2DL_HeLa ( plot= True):
+def dataset_boxplot_optimal_N2DL_HeLa (plot= True):
 
    
     ac = [0.8083639705882353, 0.8141226945021894, 0.8011127367379153, 0.8013222347823108]
@@ -90,12 +90,12 @@ def dataset_boxplot_optimal_N2DL_HeLa ( plot= True):
     
     fig_1 = plt.figure(figsize = (14 , 10))
     ax = fig_1.add_axes([0 , 0 , 1 , 1])
-    ax.set_xticklabels(['global otsu \n histogram stretching median' , 'two level otsu \n histogram stretching',  'local adaptive thresholding average \n median filter and histogram stretching'])
+    ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching median' , 'Two-level Otsu thresholding\n histogram stretching',  'Local adaptive Otsu thresholding average \n median filter and histogram stretching'])
     ax.set_ylim([0, 1])
 
-    plt.title( 'Optimal Otsu N2DL-HeLa' , size = 18)
-    plt.ylabel('optimal Otsu' , size = 14)
-    plt.xlabel('Dice score' , size = 14)
+    plt.title( 'Optimal Otsu thresholding method - N2DL-HeLa' , size = 18)
+    plt.ylabel('Dice score' , size = 14)
+    plt.xlabel('Otsu thresholding methods ' , size = 14)
 
 
     bp = ax.boxplot(data, patch_artist = True , showmeans = True , meanline = True , meanprops = dict(color = "white" , linewidth = 1.5))
@@ -109,3 +109,13 @@ def dataset_boxplot_optimal_N2DL_HeLa ( plot= True):
     
     print(bp["means"][0])
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
+
+
+
+def data_boxplot_optimal_otsu_thresholding_method(x , plot = True):
+    if x == 'all' :
+        dataset_boxplot_optimal_N2DH_GOWT1()
+        dataset_boxplot_optimal_N2DL_HeLa()
+        dataset_boxplot_optimal_NIH3T3()
+
+

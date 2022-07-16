@@ -100,8 +100,8 @@ def dataset_boxplot_otsu(data , title , plot = True):
     ax.set_ylim([0, 1])
 
     plt.title(title , size = 18)
-    plt.ylabel('Preprocessing methods' , size = 14)
-    plt.xlabel('Dice score' , size = 14)
+    plt.ylabel('Dice score' , size = 14)
+    plt.xlabel('Preprocessing methods' , size = 14)
 
 
     bp = ax.boxplot(data, patch_artist = True , showmeans = True , meanline = True , meanprops = dict(color = "white" , linewidth = 1.5))
@@ -113,11 +113,43 @@ def dataset_boxplot_otsu(data , title , plot = True):
     for median in bp['medians']:
         median.set(color = 'black' , linewidth = 1)
     
-    #print boxplot
     print(bp["means"][0])
 
     #add legend 
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
 
 
+def subplot_three(image1, image2,image3, plot=True):
+    
+    fig, ax = plt.subplots(2, 2, figsize=(100,100))
+   
+    ax[0][0].imshow(image1)
+    ax[0][1].imshow(image2)
+    ax[1][0].imshow(image3)
+    plt.axis('off')
 
+    plt.tight_layout()
+
+
+def subplot_two(image1, image2, plot=True):
+    
+    fig, ax = plt.subplots(1, 2, figsize=(100,100))
+   
+    ax[0].imshow(image1)
+    ax[1].imshow(image2)
+    plt.axis('off')
+
+    plt.tight_layout()
+
+
+def subplot_four(image1, image2, image3, image4, plot=True):
+    
+    fig, ax = plt.subplots(2, 2, figsize=(100,100))
+   
+    ax[0][0].imshow(image1)
+    ax[0][1].imshow(image2)
+    ax[1][0].imshow(image3)
+    ax[1][1].imshow(image4)
+    plt.axis('off')
+
+    plt.tight_layout()
