@@ -1,4 +1,4 @@
-# otsu thresholding
+###otsu thresholding (between and within class variance)
 
 from cmath import nan
 

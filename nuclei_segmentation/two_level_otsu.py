@@ -1,61 +1,76 @@
+###Two level Otsu and two level Otsu clip 
+
 from cmath import nan
 
 
 def two_level_otsu_thresholding_within(img,x):
+    """
+    This function takes an image as well as the amount of wanted thresholds and calculates the class probabilies and mean levels for 
+    foreground and background for each threshold. Then, the within class variance using the two-level Otsu's formula is computed 
+    and the optimal threshold value is found. Lastly, the image is clipped based on the optimal threshold values and the thresholded 
+    image is returned.(everything above the first threshold counts as foreground) 
+
+    :param img: Input image
+    :param x: The number of intensity levels/ wanted thresholds
+    :return: thresholded image 
+
+    """
     import matplotlib.pyplot
     import numpy
 
-   # load histogram, Mathematische werte aus Histogramm rausgreifen
+    #load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
   
-   # initialize threshold value (T = 0) 
+    #initialize threshold value (T = 0) 
     thres = list()
     copy = img.copy()
 
-    # create list to store values of within class variance for each threshold value
+    #create list to store values of within class variance for each threshold value as well as a list for the threshold indices 
     wcv = list()
     threshold = list()
-    # set up initial values
+
+    #calculate each within class variance for each possible threshold combination
     for i in range(0,len(n)):
         for t in range(0,len(n)):
             
-            #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
+            # background 
+            # compute class probabilities and mean levels 
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
                 
-            # background class probabilites and class mean levels
+            
             w0 = w0_sum / sum(n)  
             if(sum(n[0:i+1]) != 0):  
                 mean_0 = mean_sum0 / sum(n[0:i+1])
             else: mean_0 = 0
             
             # compute background class variance
-
             v0_sum = numpy.sum((numpy.array((bins[0:i+1]-mean_0)** 2)*numpy.array(n[0:i+1])))
             v0 = v0_sum / sum(n[0:i+1])
             
-            # sum up the probabilites of each intensity value;  and the mean value
+            # between the two thresholds (counted as foreground)
+            # compute class probabilities and mean levels 
             w1_sum = numpy.sum(numpy.array(n[i+1:t]))
             mean_sum1 = numpy.sum((numpy.array(bins[i+1:t])*numpy.array(n[i+1:t])))
                 
-            # compute foreground class probabilities and class mean levels    
             w1 = w1_sum / sum(n)
             if(sum(n[i+1:t]) != 0):
                 mean_1 = mean_sum1 / sum(n[i+1:t])
             else: mean_1 = 0
 
-            # compute foreground class variance 
+            # compute class variance for space between the two thresholds
             v1_sum = numpy.sum((numpy.array((bins[i+1:t]-mean_1)** 2)*numpy.array(n[i+1:t])))
         
             if( sum(n[i+1:t]) != 0):
                 v1 = v1_sum / sum(n[i+1:t])
             else: v1 = 0
 
-            # sum up the probabilites of each intensity value;  and the mean value
+            # foreground
+            # compute class probabilities and mean levels 
             w2_sum = numpy.sum(numpy.array(n[t:len(n)]))
             mean_sum2 = numpy.sum((numpy.array(bins[t:len(n)])*numpy.array(n[t:len(n)])))
                 
-            # compute foreground class probabilities and class mean levels    
+            
             w2 = w2_sum / sum(n)
             if(sum(n[t:len(n)]) != 0):
                 mean_2 = mean_sum2 / sum(n[t:len(n)])
@@ -68,7 +83,7 @@ def two_level_otsu_thresholding_within(img,x):
                 v2 = v2_sum / sum(n[t:len(n)])
             else: v2 = 0
 
-            # compute within class variance and append to list
+            # compute within class variance and append to list, append indices to list 
             wclv = (w0 * v0) + (w1 * v1) + (w2 * v2)
             thresholds = [i,t]
             wcv.append(wclv)
@@ -84,10 +99,12 @@ def two_level_otsu_thresholding_within(img,x):
         if wcv[l] == optimal_thres: thres.append(threshold[l])
         l += 1
 
+    #assign first and second threshold 
     thres = thres[0]
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
     
+    #perform image clipping, counting everything above the first threshold as foreground 
     for o in numpy.ndindex(copy.shape):
         if copy[o] <= (thres1): 
             copy[o] = 0
@@ -100,49 +117,56 @@ def two_level_otsu_thresholding_within(img,x):
 
 
 
-
-
-
-
-
 def two_level_otsu_thresholding_clip_within(img,x):
+
+    """
+    This function takes an image as well as the amount of wanted thresholds and calculates the class probabilies and mean levels for 
+    foreground and background for each threshold. Then, the within class variance using the two-level Otsu's formula is computed 
+    and the optimal threshold value is found. Lastly, the image is clipped based on the optimal threshold values, only counting the space between
+    the two thresholds as foreground and thereby removing the reflections, and the thresholded image is returned. 
+
+    :param img: Input image
+    :param x: The number of intensity levels/ wanted thresholds
+    :return: thresholded image 
+
+    """
     import matplotlib.pyplot
     import numpy
 
-   # load histogram, Mathematische werte aus Histogramm rausgreifen
+    #load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
   
-   # initialize threshold value (T = 0) 
+    #initialize threshold value (T = 0) 
     thres = list()
     copy = img.copy()
 
-    # create list to store values of within class variance for each threshold value
+    #create list to store values of within class variance for each threshold value as well as a list for the threshold indices 
     wcv = list()
     threshold = list()
-    # set up initial values
+    
+    #calculate each within class variance for each possible threshold combination
     for i in range(0,len(n)):
         for t in range(0,len(n)):
          
-            #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
+            # background 
+            # compute class probabilities and mean levels
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
                 
-            # background class probabilites and class mean levels
             w0 = w0_sum / sum(n)  
             if(sum(n[0:i+1]) != 0):  
                 mean_0 = mean_sum0 / sum(n[0:i+1])
             else: mean_0 = 0
             
             # compute background class variance
-
             v0_sum = numpy.sum((numpy.array((bins[0:i+1]-mean_0)** 2)*numpy.array(n[0:i+1])))
             v0 = v0_sum / sum(n[0:i+1])
             
-            # sum up the probabilites of each intensity value;  and the mean value
+            # foreground
+            # compute class probabilities and mean levels 
             w1_sum = numpy.sum(numpy.array(n[i+1:t]))
             mean_sum1 = numpy.sum((numpy.array(bins[i+1:t])*numpy.array(n[i+1:t])))
-                
-            # compute foreground class probabilities and class mean levels    
+                    
             w1 = w1_sum / sum(n)
             if(sum(n[i+1:t]) != 0):
                 mean_1 = mean_sum1 / sum(n[i+1:t])
@@ -155,24 +179,24 @@ def two_level_otsu_thresholding_clip_within(img,x):
                 v1 = v1_sum / sum(n[i+1:t])
             else: v1 = 0
 
-            # sum up the probabilites of each intensity value;  and the mean value
+            # reflections(interval above second threshold)
+            # compute class probabilities and mean levels 
             w2_sum = numpy.sum(numpy.array(n[t:len(n)]))
             mean_sum2 = numpy.sum((numpy.array(bins[t:len(n)])*numpy.array(n[t:len(n)])))
-                
-            # compute foreground class probabilities and class mean levels    
+
             w2 = w2_sum / sum(n)
             if(sum(n[t:len(n)]) != 0):
                 mean_2 = mean_sum2 / sum(n[t:len(n)])
             else: mean_2 = 0
 
-            # compute foreground class variance 
+            # compute class variance 
             v2_sum = numpy.sum((numpy.array((bins[t:len(n)]-mean_2)** 2)*numpy.array(n[t:len(n)])))
         
             if( sum(n[t:len(n)]) != 0):
                 v2 = v2_sum / sum(n[t:len(n)])
             else: v2 = 0
 
-            # compute within class variance and append to list
+            # compute within class variance and append to list, append indices to list 
             wclv = (w0 * v0) + (w1 * v1) + (w2 * v2)
             thresholds = [i,t]
             wcv.append(wclv)
@@ -187,12 +211,13 @@ def two_level_otsu_thresholding_clip_within(img,x):
     while l < len(wcv):
         if wcv[l] == optimal_thres: thres.append(threshold[l])
         l += 1
-
+    
+    #assign first and second threshold 
     thres = thres[0]
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
 
-
+    #perform image clipping, only counting the interval between the first and second threshold as foreground 
     for o in numpy.ndindex(copy.shape):
         if copy[o] <= (thres1): 
             copy[o] = 0
@@ -204,84 +229,86 @@ def two_level_otsu_thresholding_clip_within(img,x):
     return copy 
 
 def two_level_otsu_thresholding(img,x):
+    """
+    This function takes an image as well as the amount of wanted thresholds and calculates the class probabilies and mean levels for 
+    foreground and background for each threshold. Then, the between class variance using the two-level Otsu's formula is computed 
+    and the optimal threshold value is found. Lastly, the image is clipped based on the optimal threshold values and the thresholded 
+    image is returned. (everything above the first threshold counts as foreground)
+
+    :param img: Input image
+    :param x: The number of intensity levels/ wanted thresholds
+    :return: thresholded image 
+
+    """
     import matplotlib.pyplot
     import numpy
 
-    # load histogram, Mathematische werte aus Histogramm rausgreifen
+    #load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
 
-    # initialize threshold value (T = 0) 
+    #initialize threshold value (T = 0) 
     thres = list()
     copy = img.copy()
 
-    # create list to store values of within class variance for each threshold value
-    wcv = list()
+    #calculate each within class variance for each possible threshold combination
+    bcv = list()
     threshold = list()
     # set up initial values
     for i in range(0,len(n)):
         for t in range(0,len(n)):
          
-            #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
+            # background 
+            # compute class probabilities and mean levels
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
                 
-            # background class probabilites and class mean levels
             w0 = w0_sum / sum(n)  
             if(sum(n[0:i+1]) != 0):  
                 mean_0 = mean_sum0 / sum(n[0:i+1])
             else: mean_0 = 0
             
-            # compute background class variance
-
-            
-            # sum up the probabilites of each intensity value;  and the mean value
+            # between the two thresholds (counted as foreground)
+            # compute class probabilities and mean levels 
             w1_sum = numpy.sum(numpy.array(n[i+1:t]))
             mean_sum1 = numpy.sum((numpy.array(bins[i+1:t])*numpy.array(n[i+1:t])))
-                
-            # compute foreground class probabilities and class mean levels    
+                  
             w1 = w1_sum / sum(n)
             if(sum(n[i+1:t]) != 0):
                 mean_1 = mean_sum1 / sum(n[i+1:t])
             else: mean_1 = 0
 
-            # compute foreground class variance 
-        
-
-            # sum up the probabilites of each intensity value;  and the mean value
+            # foreground
+            # compute class probabilities and mean levels 
             w2_sum = numpy.sum(numpy.array(n[t:len(n)]))
             mean_sum2 = numpy.sum((numpy.array(bins[t:len(n)])*numpy.array(n[t:len(n)])))
-                
-            # compute foreground class probabilities and class mean levels    
+    
             w2 = w2_sum / sum(n)
             if(sum(n[t:len(n)]) != 0):
                 mean_2 = mean_sum2 / sum(n[t:len(n)])
             else: mean_2 = 0
 
-            # compute foreground class variance 
-        
-
-            # compute within class variance and append to list
-            m_t = w0*mean_0 + w1*mean_1 + w2*mean_2 
-            #wclv = w0*((mean_0 - m_t) ** 2)+ w1*((mean_1 - m_t) ** 2) + w2*((mean_2 - m_t) ** 2)
-            wclv = w0*w1*((mean_1-mean_0)**2) + w0*w2*((mean_2 - mean_0)**2)+ w1*w2*((mean_2-mean_1)**2)
+            # compute between class variance and append to list, append indices to list 
+            bclv = w0*w1*((mean_1-mean_0)**2) + w0*w2*((mean_2 - mean_0)**2)+ w1*w2*((mean_2-mean_1)**2)
             thresholds = [i,t]
-            wcv.append(wclv)
+            bcv.append(bclv)
             threshold.append(thresholds)
 
 
-    # select optimal threshold value, minimum value of within class variance
-    optimal_thres = max(wcv)
+    # select optimal threshold value, maximum value of between class variance
+    optimal_thres = max(bcv)
 
     #select optimal threshold in the list
     l = 0
-    while l < len(wcv):
-        if wcv[l] == optimal_thres: thres.append(threshold[l])
+    while l < len(bcv):
+        if bcv[l] == optimal_thres: thres.append(threshold[l])
         l += 1
 
+    #assign first and second threshold 
     thres = thres[0]
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
 
+    #perform image clipping, counting everything above the first threshold as foreground 
     for o in numpy.ndindex(copy.shape):
         if copy[o] <= (thres1): 
             copy[o] = 0
@@ -293,88 +320,89 @@ def two_level_otsu_thresholding(img,x):
     return copy 
 
 
-
-
-
-
-
-
 def two_level_otsu_thresholding_clip(img,x):
+    """
+    This function takes an image as well as the amount of wanted thresholds and calculates the class probabilies and mean levels for 
+    foreground and background for each threshold. Then, the between class variance using the two-level Otsu's formula is computed 
+    and the optimal threshold value is found. Lastly, the image is clipped based on the optimal threshold values, only counting the space between
+    the two thresholds as foreground and thereby removing the reflections, and the thresholded image is returned. 
+
+    :param img: Input image
+    :param x: The number of intensity levels/ wanted thresholds
+    :return: thresholded image 
+
+    """
     import matplotlib.pyplot
     import numpy
 
-   # load histogram, Mathematische werte aus Histogramm rausgreifen
+    #load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
   
-   # initialize threshold value (T = 0) 
+    #initialize threshold value (T = 0) 
     thres = list()
     copy = img.copy()
 
-    # create list to store values of within class variance for each threshold value
-    wcv = list()
+    #create list to store values of within class variance for each threshold value as well as a list for the threshold indices 
+    bcv = list()
     threshold = list()
-    # set up initial values
+    
+    #calculate each within class variance for each possible threshold combination
     for i in range(0,len(n)):
         for t in range(0,len(n)):
             
-            #sum up the probabilites of each intensity value;  and the mean value (sind noch nicht happy mit der definition :()
+            # background 
+            # compute class probabilities and mean levels
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
                 
-            # background class probabilites and class mean levels
             w0 = w0_sum / sum(n)  
             if(sum(n[0:i+1]) != 0):  
                 mean_0 = mean_sum0 / sum(n[0:i+1])
             else: mean_0 = 0
-            
-            # compute background class variance
-
-    
-            # sum up the probabilites of each intensity value;  and the mean value
+ 
+            # foreground
+            # compute class probabilities and mean levels 
             w1_sum = numpy.sum(numpy.array(n[i+1:t]))
             mean_sum1 = numpy.sum((numpy.array(bins[i+1:t])*numpy.array(n[i+1:t])))
                 
-            # compute foreground class probabilities and class mean levels    
             w1 = w1_sum / sum(n)
             if(sum(n[i+1:t]) != 0):
                 mean_1 = mean_sum1 / sum(n[i+1:t])
             else: mean_1 = 0
 
-            # compute foreground class variance 
-            
-            # sum up the probabilites of each intensity value;  and the mean value
+            # reflections(interval above second threshold)
+            # compute class probabilities and mean levels 
             w2_sum = numpy.sum(numpy.array(n[t:len(n)]))
             mean_sum2 = numpy.sum((numpy.array(bins[t:len(n)])*numpy.array(n[t:len(n)])))
-                
-            # compute foreground class probabilities and class mean levels    
+              
             w2 = w2_sum / sum(n)
             if(sum(n[t:len(n)]) != 0):
                 mean_2 = mean_sum2 / sum(n[t:len(n)])
             else: mean_2 = 0
-
-            # compute foreground class variance 
           
-            # compute within class variance and append to list
-            m_t = w0*mean_0 + w1*mean_1 + w2*mean_2 
-            wclv = w0*w1*((mean_1-mean_0)**2) + w0*w2*((mean_2 - mean_0)**2)+ w1*w2*((mean_2-mean_1)**2)
+            # compute between class variance and append to list, append indices to list 
+            
+            bclv = w0*w1*((mean_1-mean_0)**2) + w0*w2*((mean_2 - mean_0)**2)+ w1*w2*((mean_2-mean_1)**2)
             thresholds = [i,t]
-            wcv.append(wclv)
+            bcv.append(bclv)
             threshold.append(thresholds)
 
 
-    # select optimal threshold value, minimum value of within class variance
-    optimal_thres = max(wcv)
+    # select optimal threshold value, maximum value of between class variance
+    optimal_thres = max(bcv)
 
     #select optimal threshold in the list
     l = 0
-    while l < len(wcv):
-        if wcv[l] == optimal_thres: thres.append(threshold[l])
+    while l < len(bcv):
+        if bcv[l] == optimal_thres: thres.append(threshold[l])
         l += 1
 
+    #assign first and second threshold 
     thres = thres[0]
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
     
+    #perform image clipping, only counting the interval between the first and second threshold as foreground 
     for o in numpy.ndindex(copy.shape):
         if copy[o] <= (thres1): 
             copy[o] = 0
