@@ -9,10 +9,17 @@ from cmath import nan
 # average threshold
 
 def tlot(img,x):
+
+    """
+    ### Two level Otsu threshold
+    This function calculates two threshold values 
+
+
+    """
     import matplotlib.pyplot
     import numpy
 
-   # load histogram, Mathematische werte aus Histogramm rausgreifen
+   # load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
   
    # initialize threshold value (T = 0) 
@@ -110,19 +117,40 @@ def nanignore_otsu_two_level_mean(image):
 
 def two_level_local_thresholding_mean(image,stepsize,framesize):
 
-    img=np.empty([image.shape[0]+framesize,image.shape[1]+framesize,])
+    """
+    ### Two level local thresholding average
+    This function performs local thresholding on a selected picture for a given stepsize and framesize.
+    To esnure segmentation of pixels on the right and bottom edges of the picture, rows and columns of NaN values are attached to the intensity array.
+    It iterates over the image and computes local threshold for an N x N neighbourhood, where N corresponds to the framesize, calculates an upper and lower threshold value for each pixel in the frame and saves it.
+    Once all iterations are done, NaN values are removed and for each pixel a unique threshold is calculated as an average of the previously saved neighbourhood thresholds.
+    The image is finally segmented, assigning each pixel to 0 or 1 based on unique lower and upper threshold values, setting the intensity to 1, if initial pixel intensity is higher than the lower intensity threshold. 
+    Lastly a binary picture is returned.
+
+    :param image: Input image
+    :param stepsize: Distance between two iteration frames
+    :param framesize: Length of an edge for a square iteration frame (Note: For local thresholding set stepsize = framesize. For local adaptive thresholding stepsize < framesize)
+    :return: Segmented image
+    """
+
+    # translate the image array onto a larger, empty array to add a bottom and right edge, fill the empty values with NaN's  
+    img=np.empty([image.shape[0]+framesize,image.shape[1]+framesize,])\
     img[:]=np.NaN
-    #img=np.copy(image)
     for i,j in np.ndindex(image.shape[0], image.shape[1]):
         img[i,j]=image[i,j]
 
+    #initiate a 3-dimensional array to store unique upper and lower threshold values, number of times thresholding has been performed in set pixel positon and calculated average threshold values for each pixel position 
     array=np.zeros([img.shape[0],img.shape[1],3])
     x=0
     y=0
+
+    #iterate over the image
     while x+framesize<=img.shape[0]:    
         while y+framesize<=img.shape[1]:
+            #define the neighbourhood for which the thresholds will be calculated
             post_otsu=img[x:x+framesize, y:y+framesize]
+            #perform two level Otsu thresholding
             threshold = nanignore_otsu_two_level_mean(post_otsu)
+            #save the calculated lower and upper threshold for each pixel in the defined neighbourhood, add 1 to number of thresholds that have been calculated for a unique pixel
             for a, b in np.ndindex(post_otsu.shape[0], post_otsu.shape[1]):
                 c=a+x
                 d=b+y
@@ -132,12 +160,17 @@ def two_level_local_thresholding_mean(image,stepsize,framesize):
             y+=stepsize
         y=0
         x+=stepsize 
-    img=img[0:image.shape[0], 0:image.shape[1]]#(img,0,0,image.shape[0],image.shape[1])
+    # remove NaN rows and columns from the image array
+    img=img[0:image.shape[0], 0:image.shape[1]]
+    #set pixel intensity for each pixel individually
     for i,j in np.ndindex(img.shape):
+        #if the pixel intensity is lower than the average lower threshold, set pixel intensity to 0
         if img[i,j]<array[i,j,0]/array[i,j,2]:
             img[i,j]=0
+        # if the pixel intensity is between the averages of the upper and lower threshold, set pixel intensity to 1
         elif img[i,j]>=array[i,j,0]/array[i,j,2] and img[i,j]<array[i,j,1]/array[i,j,2]:
             img[i,j]=1
+        # if the pixel intensity is hiher than the average lower threshold, set pixel intensity to 1
         else:
             img[i,j]=1
 
@@ -158,29 +191,54 @@ def nanignore_otsu_two_level(image):
     return img
 
 def two_level_local_thresholding_counts(image,stepsize,framesize, sensitivity):
+
+    """
+    ### Two level local thresholding counts
+    This function performs local adaptive thresholding on a selected picture for a given stepsize, framesize and sensitivity and returns a segmented image. 
+    It iterates over the image and computes two local thresholds for an N x N neighbourhood, where N corresponds to the framesize. To esnure segmentation of pixels on the right and bottom edges of the picture, rows and columns of NaN values are attached to the intensity array.
+    Once the local thresholds are computed, segmentation of the neighbourhood is performed, assigning all pixels with intensity higher than the lower threshold to foreground. The pixel intensity value assignemt is saved for final segmentation. 
+    Once all iterations are performed, the NaN edges are removed and each pixel gains the intensity value 1, if it has been assigned to foreground a percentile of times, which is set by the sensitivity.
+    The rest of the pixels gain the intensity value 0. After final intensity assignment a whole segmented picture is retrieved.
+
+    :param image: Input image
+    :param stepsize: Distance between two iteration frames
+    :param framesize: Length of an edge for a square iteration frame (Note: For local thresholding set stepsize = framesize. For local adaptive thresholding stepsize < framesize)
+    :param sensitivity: Value in range [0,1], setting the lower proportion boundary for foreground/background assignment of a unique pixel A = F/(F+B). Pixels with A<= sensitivity are assigned to background (Note: for segmentation based on mode of pixel assignment, set sensitivity to 0.5)
+    :return: Segmented image
+
+
+    """
+    # translate the image array onto a larger, empty array to add a bottom and right edge, fill the empty values with NaN's 
     img=np.empty([image.shape[0]+framesize,image.shape[1]+framesize,])
     img[:]=np.NaN
     for i,j in np.ndindex(image.shape[0], image.shape[1]):
         img[i,j]=image[i,j]
+    #create a new array to count the foreground/background assignment of each pixel
     it=np.zeros([img.shape[0],img.shape[1],2])
     x=0
     y=0
+
+    #iterate over the image
     while x+framesize<=img.shape[0]:
         while y+framesize<=img.shape[1]:
+            #segment the local neighbourhood by performing 2 level otsu
             post_otsu = nanignore_otsu_two_level(img[x:x+framesize,y:y+framesize])
+            # save segmentation information (foreground/background assignment, how many times segmentation has been performed in respect to a unique pixel) for each pixel
             for a,b in np.ndindex(post_otsu.shape[0],post_otsu.shape[1]):
                 it[x+a,y+b,0] +=post_otsu[a,b]
                 it[x+a,y+b,1] += sensitivity
             y+=stepsize
         y=0
         x+=stepsize
-    print(it)
-    img=img[0:image.shape[0],0:image.shape[1]]
+    # remove rows and columns corresponding to the NaN edges
+    img=img[0:image.shape[0],0:image.shape[1]] 
+    #for every pixel compare the proportion foreground/(foreground+background)
     for i, j in np.ndindex(img.shape[0], img.shape[1]):
+        # if the proportion is larger than sensitivity, set pixel intensity value to 1
         if it[i,j,0]>it[i,j,1]:
             img[i,j]=1
+        # set all other pixel intensity values to 0
         else:
             img[i,j]=0
-    img=img[0:image.shape[0],0:image.shape[1]]
 
     return img
