@@ -1,3 +1,6 @@
+###Optimal otsu boxplots 
+
+#import packages 
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.ndimage
@@ -17,8 +20,15 @@ from matplotlib import pylab, mlab
 from IPython.core.pylabtools import figsize, getfigs
 
 
-
+#optimal otsu boxplot NIH3T3
 def dataset_boxplot_optimal_NIH3T3(plot = True):
+    """
+    This function prints the optimal otsu boxplot for NIH3T3. 
+
+    :param plot: sets plot = True for boxplot
+    
+    """
+    
     # optimal dice scores for the different Otsu variations for NIH3T3 dataset obtained by calculating the median for each preprocessing method in combination with the different Otsu variations
     aa = [0.9080295797878731, 0.9080746699707551, 0.8240269286695534, 0.7523092096313426, 0.7667266042242559, 0.7210834846002242, 0.6796112266384551, 0.7467162829788587, 0.1537407710034592, 0.61035447425189, 0.6454520836896415, 0.676574551172507, 0.5441254230662401, 0.5872934791498239, 0.6104348417019902, 0.6002316933870171, 0.737465149556319, 0.7870066342425532]
     ba = [0.9417263695042412, 0.9439370328532631, 0.5938264317277092, 0.758336987687637, 0.7993590316749856, 0.7272126154647645, 0.6814227277548294, 0.7181630754976537, 0.39260486580391374, 0.6171748562804691, 0.6454109779570866, 0.41456195234474275, 0.49592209998602965, 0.5905319096281916, 0.5107143326635717, 0.6345225131588169, 0.7434112841158013, 0.40626796678720645]
@@ -47,8 +57,14 @@ def dataset_boxplot_optimal_NIH3T3(plot = True):
     print(bp["means"][0])
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
 
-
+#optimal otsu boxplot N2DH-GOWT1
 def dataset_boxplot_optimal_N2DH_GOWT1 (plot = True):
+    """
+    This function prints the optimal otsu boxplot for N2DH-GOWT1.  
+
+    :param plot: sets plot = True for boxplot
+    
+    """
     # optimal dice scores for the different Otsu variations for N2DH_GOWT1 dataset obtained by calculating the median for each preprocessing method in combination with the different Otsu variations
     ab = [0.6573057536130297, 0.8889624027757476, 0.8888822505843782, 0.8840789866507442, 0.8466965877165696, 0.915678984885556]
     bb = [0.9012671046140265, 0.8003354141432963, 0.8060750740862693, 0.8040329829223495, 0.9048154915767894, 0.9191552972412177]
@@ -77,8 +93,14 @@ def dataset_boxplot_optimal_N2DH_GOWT1 (plot = True):
     print(bp["means"][0])
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
 
-
+#optimal otsu boxplot N2DL-HeLa
 def dataset_boxplot_optimal_N2DL_HeLa (plot= True):
+    """
+    This function prints the optimal otsu boxplot for N2DL-HeLa. 
+
+    :param plot: sets plot = True for boxplot
+    
+    """
     # optimal dice scores for the different Otsu variations for N2DL-HeLa dataset obtained by calculating the median for each preprocessing method in combination with the different Otsu variations
     ac = [0.8083639705882353, 0.8141226945021894, 0.8011127367379153, 0.8013222347823108]
     bc = [0.8817603654829008, 0.9000374463509011, 0.8842740559972709, 0.8889154796216717]
@@ -110,8 +132,14 @@ def dataset_boxplot_optimal_N2DL_HeLa (plot= True):
     plt.legend([bp["medians"][0], bp["means"][0]] , ["median", 'mean'], loc = 'lower right' , facecolor = 'gray')
 
 
-
+#optimal otsu boxplots for all datasets 
 def data_boxplot_optimal_otsu_thresholding_method(x , plot = True):
+    """
+    This function prints the optimal otsu boxplots for all datasets. 
+
+    :param x: parameter for function 'all'
+    
+    """
     if x == 'all' :
         dataset_boxplot_optimal_N2DH_GOWT1()
         dataset_boxplot_optimal_N2DL_HeLa()

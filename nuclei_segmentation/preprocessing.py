@@ -1,3 +1,4 @@
+###Preprocessing and boxplot functions
 #import all packages 
 
 import matplotlib.pyplot as plt
@@ -120,6 +121,12 @@ def dataset_boxplot_otsu(data , title , plot = True):
 
 
 def subplot_three(image1, image2,image3, plot=True):
+    """
+    This function takes three images and prints them in a subplot. 
+
+    :param image1, image2, image3: Input images
+
+    """
     
     fig, ax = plt.subplots(2, 2, figsize=(100,100))
    
@@ -132,6 +139,12 @@ def subplot_three(image1, image2,image3, plot=True):
 
 
 def subplot_two(image1, image2, plot=True):
+    """
+    This function takes two images and prints them in a subplot. 
+
+    :param image1, image2: Input images
+
+    """
     
     fig, ax = plt.subplots(1, 2, figsize=(100,100))
    
@@ -143,13 +156,37 @@ def subplot_two(image1, image2, plot=True):
 
 
 def subplot_four(image1, image2, image3, image4, plot=True):
-    
+    """
+    This function takes four images and prints them in a subplot. 
+
+    :param image1, image2, image3, image4: Input images
+
+    """
     fig, ax = plt.subplots(2, 2, figsize=(100,100))
    
     ax[0][0].imshow(image1)
     ax[0][1].imshow(image2)
     ax[1][0].imshow(image3)
     ax[1][1].imshow(image4)
+    plt.axis('off')
+
+    plt.tight_layout()
+
+
+
+def subplot_local(image1, image2,image3, plot=True):
+    """
+    This function takes three images and prints them in a subplot. 
+
+    :param image1, image2, image3: Input images
+
+    """
+    
+    fig, ax = plt.subplots(1, 3, figsize=(100,100))
+   
+    ax[0].imshow(image1)
+    ax[1].imshow(image2)
+    ax[2].imshow(image3)
     plt.axis('off')
 
     plt.tight_layout()
