@@ -104,7 +104,6 @@ def otsu_t(img,x):
     :param x: The number of intensity levels/ wanted thresholds
     :return: Threshold value
     """
-    def otsu_t(img,x):
     import matplotlib.pyplot
     import numpy
 
