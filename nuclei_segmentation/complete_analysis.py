@@ -1298,3 +1298,17 @@ def complete_analysis_local_otsu(x):
         boxplot = pp.dataset_boxplot_otsu(data_NIH3T3 , 'Preprocessing methods - NIH3T3 - Local adaptive Otsu Thresholding')
         
     return boxplot
+
+    #complete analysis for both datasets in one function (for local adaptive otsu)
+def complete_analysis_global_otsu_all(x):
+    """
+    This function performs the complete analysis for local adaptive otsu on all datasets. 
+
+    :param x: parameter for function 'all'
+    
+    """
+    if x == 'all':
+        
+        complete_analysis_local_otsu("N2DL-HeLa")
+        complete_analysis_local_otsu("NIH3T3")
+
