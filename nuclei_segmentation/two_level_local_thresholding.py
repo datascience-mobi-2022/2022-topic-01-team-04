@@ -25,91 +25,91 @@ def tlot(img,x):
     import matplotlib.pyplot
     import numpy
 
-    #load histogram (numerical values)
+   # load histogram (numerical values)
     n, bins = numpy.histogram(img.flatten(),bins = x)
   
-    #initialize threshold value (T = 0) 
+   # initialize threshold value (T = 0) 
     thres = list()
     copy = img.copy()
 
-    #create list to store values of within class variance for each threshold value as well as a list for the threshold indices 
+    # create list to store values of within class variance for each threshold value
     wcv = list()
     threshold = list()
-
-    #calculate each within class variance for each possible threshold combination
+    # calculate each within class variance for each possible threshold combination
     for i in range(0,len(n)):
         for t in range(0,len(n)):
             
             # background 
-            # compute class probabilities and mean levels 
+            # compute class probabilities and mean levels
             w0_sum = numpy.sum(numpy.array(n[0:i+1]))
             mean_sum0 = numpy.sum((numpy.array(bins[0:i+1])*numpy.array(n[0:i+1])))
                 
             
-            w0 = w0_sum / sum(n)  
             if(sum(n[0:i+1]) != 0):  
+                w0 = w0_sum / sum(n)  
                 mean_0 = mean_sum0 / sum(n[0:i+1])
-            else: mean_0 = 0
+            else: 
+                mean_0 = 0
+                w0 = 0
             
             # compute background class variance
-            v0_sum = numpy.sum((numpy.array((bins[0:i+1]-mean_0)** 2)*numpy.array(n[0:i+1])))
-            v0 = v0_sum / sum(n[0:i+1])
-            
-            # between the two thresholds (counted as foreground)
+
+    
+            # foreground
             # compute class probabilities and mean levels 
             w1_sum = numpy.sum(numpy.array(n[i+1:t]))
             mean_sum1 = numpy.sum((numpy.array(bins[i+1:t])*numpy.array(n[i+1:t])))
                 
-            w1 = w1_sum / sum(n)
+            # compute foreground class probabilities and class mean levels    
+            #w1 = w1_sum / sum(n)
             if(sum(n[i+1:t]) != 0):
+                w1 = w1_sum / sum(n)
                 mean_1 = mean_sum1 / sum(n[i+1:t])
-            else: mean_1 = 0
 
-            # compute class variance for space between the two thresholds
-            v1_sum = numpy.sum((numpy.array((bins[i+1:t]-mean_1)** 2)*numpy.array(n[i+1:t])))
+            else:
+                w1 = 0
+                mean_1 = 0
+
         
-            if( sum(n[i+1:t]) != 0):
-                v1 = v1_sum / sum(n[i+1:t])
-            else: v1 = 0
-
-            # foreground
-            # compute class probabilities and mean levels 
+            
+            # sum up the probabilites of each intensity value;  and the mean value
             w2_sum = numpy.sum(numpy.array(n[t:len(n)]))
             mean_sum2 = numpy.sum((numpy.array(bins[t:len(n)])*numpy.array(n[t:len(n)])))
                 
-            
-            w2 = w2_sum / sum(n)
+            # compute foreground class probabilities and class mean levels    
+            #w2 = w2_sum / sum(n)
             if(sum(n[t:len(n)]) != 0):
+                w2 = w2_sum / sum(n)
                 mean_2 = mean_sum2 / sum(n[t:len(n)])
-            else: mean_2 = 0
+            else:
+                mean_2 = 0
+                w2 = 0
 
             # compute foreground class variance 
-            v2_sum = numpy.sum((numpy.array((bins[t:len(n)]-mean_2)** 2)*numpy.array(n[t:len(n)])))
-        
-            if( sum(n[t:len(n)]) != 0):
-                v2 = v2_sum / sum(n[t:len(n)])
-            else: v2 = 0
-
-            # compute within class variance and append to list, append indices to list 
-            wclv = (w0 * v0) + (w1 * v1) + (w2 * v2)
+          
+            # compute within class variance and append to list
+            m_t = w0*mean_0 + w1*mean_1 + w2*mean_2 
+            wclv = w0*w1*((mean_1-mean_0)**2) + w0*w2*((mean_2 - mean_0)**2)+ w1*w2*((mean_2-mean_1)**2)
             thresholds = [i,t]
             wcv.append(wclv)
             threshold.append(thresholds)
 
 
     # select optimal threshold value, minimum value of within class variance
-    optimal_thres = min(wcv)
+    optimal_thres = max(wcv)
 
     #select optimal threshold in the list
     l = 0
     while l < len(wcv):
         if wcv[l] == optimal_thres: thres.append(threshold[l])
         l += 1
+    
+    #store upper and lower thresholds in a list
 
-    #assign first and second threshold 
     thres = thres[0]
     thres1  = bins[thres[0]]
     thres2  = bins[thres[1]]
+    threshold=[thres1,thres2]
     return threshold
 
 def nanignore_otsu_two_level_mean(image):

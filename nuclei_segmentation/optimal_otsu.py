@@ -2,7 +2,22 @@
 
 #import packages 
 import matplotlib.pyplot as plt
+import numpy as np
+import scipy.ndimage
+import cv2
+from nuclei_segmentation import otsu as ot
+from nuclei_segmentation import dicescore as dsc
+from nuclei_segmentation import preprocessing as pp
+from nuclei_segmentation import local_thresholding as lt
+from nuclei_segmentation import two_level_otsu as tlo
+import statistics as st
+import os
+import os.path
+import scipy
+
 from matplotlib import pylab, mlab
+
+from IPython.core.pylabtools import figsize, getfigs
 
 
 #optimal otsu boxplot NIH3T3
@@ -25,7 +40,7 @@ def dataset_boxplot_optimal_NIH3T3(plot = True):
     ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching and median filter' , 'Two-level Otsu thresholding \n no preprocessing', 'Two-level Otsu thresholding clip \n no preprocessing', ' Local adaptive Otsu thresholding average \n histogram stretchingand gaussian filter' ])
     ax.set_ylim([0, 1])
 
-    plt.title('Optimal segmentation method - NIH3T3', size = 18)
+    plt.title('Optimal Otsu thresholding method - NIH3T3', size = 18)
     plt.ylabel('Dice score' , size = 14)
     plt.xlabel('Otsu thresholding methods' , size = 14)
 
@@ -61,7 +76,7 @@ def dataset_boxplot_optimal_N2DH_GOWT1 (plot = True):
     ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching' , 'Two-level Otsu thresholding \n median filter'])
     ax.set_ylim([0, 1])
 
-    plt.title( 'Optimal segmentation method - N2DH-GOWT1' , size = 18)
+    plt.title( 'Optimal Otsu thresholding method - N2DH-GOWT1' , size = 18)
     plt.ylabel('Dice score' , size = 14)
     plt.xlabel('Otsu thresholding methods' , size = 14)
 
@@ -99,7 +114,7 @@ def dataset_boxplot_optimal_N2DL_HeLa (plot= True):
     ax.set_xticklabels(['Global Otsu thresholding \n histogram stretching and median filter' , 'Two-level Otsu thresholding\n histogram stretching',  'Local adaptive Otsu thresholding average \n histogram stretching and median filter'])
     ax.set_ylim([0, 1])
 
-    plt.title( 'Optimal segmentation method - N2DL-HeLa' , size = 18)
+    plt.title( 'Optimal Otsu thresholding method - N2DL-HeLa' , size = 18)
     plt.ylabel('Dice score' , size = 14)
     plt.xlabel('Otsu thresholding methods ' , size = 14)
 
