@@ -1167,7 +1167,7 @@ def complete_analysis_local_otsu(x):
         data_N2DLHeLa = [dice_otsu_img_N2DL_HeLa , dice_otsu_median_img_N2DL_HeLa , dice_otsu_gauss_img_N2DL_HeLa , dice_otsu_stretch_img_N2DL_HeLa , optimal_dice_stretch_median , optimal_dice_stretch_gauss]
 
         #load boxplot 
-        boxplot = pp.dataset_boxplot_otsu(data_N2DLHeLa , 'Preprocessing methods - N2DL-HeLa - Global Otsu Thresholding')
+        boxplot = pp.dataset_boxplot_otsu(data_N2DLHeLa , 'Preprocessing methods - N2DL-HeLa - Local adaptive Otsu Thresholding')
 
     
     if x == 'NIH3T3' :
@@ -1275,9 +1275,7 @@ def complete_analysis_local_otsu(x):
         median1 = st.median(dice_otsu_median_stretch_img_NIH3T3)
         median2 = st.median(dice_otsu_stretch_median_img_NIH3T3)
 
-        if(max(median1,median2) == median1):
-            optimal_dice_stretch_median = dice_otsu_median_stretch_img_NIH3T3
-        else: optimal_dice_stretch_median = dice_otsu_stretch_median_img_NIH3T3
+        optimal_dice_stretch_median = dice_otsu_stretch_median_img_NIH3T3
 
         dice_otsu_gauss_stretch_img_NIH3T3 = []
         for j in range(0,len(otsu_gauss_stretch_img_NIH3T3)):
@@ -1291,13 +1289,12 @@ def complete_analysis_local_otsu(x):
         median3 = st.median(dice_otsu_gauss_stretch_img_NIH3T3)
         median4 = st.median(dice_otsu_stretch_gauss_img_NIH3T3)
 
-        if(max(median3,median4) == median3):
-            optimal_dice_stretch_gauss = dice_otsu_gauss_stretch_img_NIH3T3
-        else: optimal_dice_stretch_gauss = dice_otsu_stretch_gauss_img_NIH3T3
+
+        optimal_dice_stretch_gauss = dice_otsu_stretch_gauss_img_NIH3T3
 
         data_NIH3T3 = [dice_otsu_img_NIH3T3 , dice_otsu_median_img_NIH3T3 , dice_otsu_gauss_img_NIH3T3 , dice_otsu_stretch_img_NIH3T3 , optimal_dice_stretch_median , optimal_dice_stretch_gauss]
 
         #load boxplot
-        boxplot = pp.dataset_boxplot_otsu(data_NIH3T3 , 'Preprocessing methods - NIH3T3 - Global Otsu Thresholding')
+        boxplot = pp.dataset_boxplot_otsu(data_NIH3T3 , 'Preprocessing methods - NIH3T3 - Local adaptive Otsu Thresholding')
         
     return boxplot
