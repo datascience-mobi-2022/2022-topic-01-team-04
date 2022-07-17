@@ -31,7 +31,7 @@ The NIH3T3 dataset contains 18 images, showing mouse (<I>Mus musculus</I>) embry
         - dicescore.py   
         - local_thresholding.py  
         - otsu.py  
-        - optimal_otsu.py
+        - optimal_otsu.py  
         - preprocessing.py    
         - two_level_otsu.py  
         - two_level_local_thresholding.py
