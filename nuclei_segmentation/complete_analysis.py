@@ -1038,12 +1038,12 @@ def complete_analysis_local_otsu(x):
     if x == 'N2DL-HeLa' :     
         #load dataset
         img_N2DL_HeLa = []
-        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DL-HeLa\img")
+        path = r"data\Otsu_data\N2DL-HeLa\img"
         for f in os.listdir(path):
             img_N2DL_HeLa.append(imread(os.path.join(path , f)))
 
         gt_N2DL_HeLa = []
-        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DL-HeLa\gt")
+        path = r"data\Otsu_data\N2DL-HeLa\gt"
         for f in os.listdir(path):
             gt_N2DL_HeLa.append(imread(os.path.join(path , f)))
 
@@ -1174,12 +1174,12 @@ def complete_analysis_local_otsu(x):
         
         #load dataset 
         img_NIH3T3 = []
-        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\NIH3T3\img")
+        path = r"data\Otsu_data\NIH3T3\img"
         for f in os.listdir(path):
             img_NIH3T3.append(imread(os.path.join(path , f)))
 
         gt_NIH3T3 = []
-        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\NIH3T3\gt")
+        path = r"data\Otsu_data\NIH3T3\gt"
         for f in os.listdir(path):
             gt_NIH3T3.append(imread(os.path.join(path , f)))
 
