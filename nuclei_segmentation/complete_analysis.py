@@ -1300,7 +1300,7 @@ def complete_analysis_local_otsu(x):
     return boxplot
 
     #complete analysis for both datasets in one function (for local adaptive otsu)
-def complete_analysis_global_otsu_all(x):
+def complete_analysis_local_otsu_all(x):
     """
     This function performs the complete analysis for local adaptive otsu on all datasets. 
 
