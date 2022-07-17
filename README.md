@@ -39,5 +39,5 @@ The NIH3T3 dataset contains 18 images, showing mouse (<I>Mus musculus</I>) embry
   5. [presentation](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/presentation): presentation files
   6. [report](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/report):  report files
   7. [archive](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/archive):  old files
-  8. [Final picture](https://github.com/datascience-mobi-2022/2022-topic-01-team-04/tree/main/Final%20picture):  final picture for the final presentation
+  
  
