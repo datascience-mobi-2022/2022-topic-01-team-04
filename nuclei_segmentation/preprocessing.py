@@ -146,10 +146,10 @@ def subplot_two(image1, image2, plot=True):
 
     """
     
-    fig, ax = plt.subplots(1, 2, figsize=(100,100))
+    fig, ax = plt.subplots(1, 2, figsize=(10,10))
    
-    ax[0].imshow(image1)
-    ax[1].imshow(image2)
+    ax[0].imshow(image1,'gray')
+    ax[1].imshow(image2,'gray')
     plt.axis('off')
 
     plt.tight_layout()
