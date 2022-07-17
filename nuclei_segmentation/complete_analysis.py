@@ -1022,3 +1022,282 @@ def complete_analysis_two_level_otsu_all(x):
         complete_analysis_two_level_otsu("N2DH-GOWT1")
         complete_analysis_two_level_otsu("N2DL-HeLa")
         complete_analysis_two_level_otsu("NIH3T3")
+
+# complete analysis function for datasets NIH3T3 and N2DL-HeLa
+def complete_analysis_local_otsu(x):
+    """
+    This function takes a string indicating the dataset, performs the complete analysis with local adaptive otsu (all postprocessing methods)
+    on dataset x and returns the boxplot.
+
+    :param x: string (name of dataset)
+    :return: boxplot of complete analysis
+    
+    """
+    
+    
+    if x == 'N2DL-HeLa' :     
+        #load dataset
+        img_N2DL_HeLa = []
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DL-HeLa\img")
+        for f in os.listdir(path):
+            img_N2DL_HeLa.append(imread(os.path.join(path , f)))
+
+        gt_N2DL_HeLa = []
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\N2DL-HeLa\gt")
+        for f in os.listdir(path):
+            gt_N2DL_HeLa.append(imread(os.path.join(path , f)))
+
+        #binarize ground truth image
+        binary_gt_N2DL_HeLa = []
+        for i in range(0,len(gt_N2DL_HeLa)):
+            binary_gt_N2DL_HeLa.append(pp.binarize(gt_N2DL_HeLa[i])) 
+
+        copy_img_N2DL_HeLa = img_N2DL_HeLa.copy()
+
+        #perform preprocessing and otsu
+        median_img_N2DL_HeLa = []
+        for i in range(0,len(copy_img_N2DL_HeLa)):
+            median_img_N2DL_HeLa.append(scipy.ndimage.median_filter(copy_img_N2DL_HeLa[i] , 2))
+
+        gauss_img_N2DL_HeLa = []
+        for i in range(0,len(copy_img_N2DL_HeLa)):
+            gauss_img_N2DL_HeLa.append(scipy.ndimage.gaussian_filter(copy_img_N2DL_HeLa[i] , 4))
+
+        stretch_img_N2DL_HeLa = []
+        for i in range(0,len(copy_img_N2DL_HeLa)):
+            stretch_img_N2DL_HeLa.append(pp.stretch(copy_img_N2DL_HeLa[i]))
+
+        median_stretch_img_N2DL_HeLa = []
+        for i in range(0,len(median_img_N2DL_HeLa)):
+            median_stretch_img_N2DL_HeLa.append(pp.stretch(median_img_N2DL_HeLa[i]))
+
+        stretch_median_img_N2DL_HeLa = []
+        for i in range(0,len(stretch_img_N2DL_HeLa)):
+            stretch_median_img_N2DL_HeLa.append(scipy.ndimage.median_filter(stretch_img_N2DL_HeLa[i] , 2))
+        
+        gauss_stretch_img_N2DL_HeLa = []
+        for i in range(0,len(gauss_img_N2DL_HeLa)):
+            gauss_stretch_img_N2DL_HeLa.append(pp.stretch(gauss_img_N2DL_HeLa[i]))
+        
+        stretch_gauss_img_N2DL_HeLa = []
+        for i in range(0,len(stretch_img_N2DL_HeLa)):
+            stretch_gauss_img_N2DL_HeLa.append(scipy.ndimage.gaussian_filter(stretch_img_N2DL_HeLa[i] , 4))
+
+        otsu_img_N2DL_HeLa = []
+        for i in range(0,len(copy_img_N2DL_HeLa)):
+            otsu_img_N2DL_HeLa.append(lt.local_thresholding_mean(copy_img_N2DL_HeLa[i] , 100, 300 ))
+
+        otsu_median_img_N2DL_HeLa = []
+        for i in range(0,len(median_img_N2DL_HeLa)):
+            otsu_median_img_N2DL_HeLa.append(lt.local_thresholding_mean(median_img_N2DL_HeLa[i] , 100, 300))
+
+        otsu_gauss_img_N2DL_HeLa = []
+        for i in range(0,len(gauss_img_N2DL_HeLa)):
+            otsu_gauss_img_N2DL_HeLa.append(lt.local_thresholding_mean(gauss_img_N2DL_HeLa[i] , 100, 300))
+
+        otsu_stretch_img_N2DL_HeLa = []
+        for i in range(0,len(stretch_img_N2DL_HeLa)):
+            otsu_stretch_img_N2DL_HeLa.append(lt.local_thresholding_mean(stretch_img_N2DL_HeLa[i] , 100, 300))
+
+        otsu_median_stretch_img_N2DL_HeLa = []
+        for i in range(0,len(median_stretch_img_N2DL_HeLa)):
+            otsu_median_stretch_img_N2DL_HeLa.append(lt.local_thresholding_mean(median_stretch_img_N2DL_HeLa[i] , 100, 300))
+        
+        otsu_stretch_median_img_N2DL_HeLa = []
+        for i in range(0,len(stretch_median_img_N2DL_HeLa)):
+            otsu_stretch_median_img_N2DL_HeLa.append(lt.local_thresholding_mean(stretch_median_img_N2DL_HeLa[i] , 100,300))
+        
+        otsu_gauss_stretch_img_N2DL_HeLa = []
+        for i in range(0,len(gauss_stretch_img_N2DL_HeLa)):
+            otsu_gauss_stretch_img_N2DL_HeLa.append(lt.local_thresholding_mean(gauss_stretch_img_N2DL_HeLa[i] , 100,300))
+        
+        otsu_stretch_gauss_img_N2DL_HeLa = []
+        for i in range(0,len(stretch_gauss_img_N2DL_HeLa)):
+            otsu_stretch_gauss_img_N2DL_HeLa.append(lt.local_thresholding_mean(stretch_gauss_img_N2DL_HeLa[i] , 100,300))
+
+        #calculate dice scores 
+        dice_otsu_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_img_N2DL_HeLa)):
+            dice_otsu_img_N2DL_HeLa.append(dsc.dice(otsu_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))
+
+        dice_otsu_median_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_median_img_N2DL_HeLa)):
+            dice_otsu_median_img_N2DL_HeLa.append(dsc.dice(otsu_median_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))
+
+        dice_otsu_gauss_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_gauss_img_N2DL_HeLa)):
+            dice_otsu_gauss_img_N2DL_HeLa.append(dsc.dice(otsu_gauss_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))
+
+        dice_otsu_stretch_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_stretch_img_N2DL_HeLa)):
+            dice_otsu_stretch_img_N2DL_HeLa.append(dsc.dice(otsu_stretch_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))
+
+        dice_otsu_median_stretch_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_median_stretch_img_N2DL_HeLa)):
+            dice_otsu_median_stretch_img_N2DL_HeLa.append(dsc.dice(otsu_median_stretch_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))
+
+        dice_otsu_stretch_median_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_stretch_median_img_N2DL_HeLa)):
+            dice_otsu_stretch_median_img_N2DL_HeLa.append(dsc.dice(otsu_stretch_median_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))
+        
+        #choose best combination histogram stretching and median filter 
+        median1 = st.median(dice_otsu_median_stretch_img_N2DL_HeLa)
+        median2 = st.median(dice_otsu_stretch_median_img_N2DL_HeLa)
+
+        if(max(median1,median2) == median1):
+            optimal_dice_stretch_median = dice_otsu_median_stretch_img_N2DL_HeLa
+        else: optimal_dice_stretch_median = dice_otsu_stretch_median_img_N2DL_HeLa
+
+        dice_otsu_gauss_stretch_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_gauss_stretch_img_N2DL_HeLa)):
+            dice_otsu_gauss_stretch_img_N2DL_HeLa.append(dsc.dice(otsu_gauss_stretch_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))    
+        
+        dice_otsu_stretch_gauss_img_N2DL_HeLa = []
+        for j in range(0,len(otsu_stretch_gauss_img_N2DL_HeLa)):
+            dice_otsu_stretch_gauss_img_N2DL_HeLa.append(dsc.dice(otsu_stretch_gauss_img_N2DL_HeLa[j] , binary_gt_N2DL_HeLa[j]))
+
+        #choose best combination histogram stretching and gaussian filter 
+        median3 = st.median(dice_otsu_gauss_stretch_img_N2DL_HeLa)
+        median4 = st.median(dice_otsu_stretch_gauss_img_N2DL_HeLa)
+
+        if(max(median3,median4) == median3):
+            optimal_dice_stretch_gauss = dice_otsu_gauss_stretch_img_N2DL_HeLa
+        else: optimal_dice_stretch_gauss = dice_otsu_stretch_gauss_img_N2DL_HeLa
+
+        data_N2DLHeLa = [dice_otsu_img_N2DL_HeLa , dice_otsu_median_img_N2DL_HeLa , dice_otsu_gauss_img_N2DL_HeLa , dice_otsu_stretch_img_N2DL_HeLa , optimal_dice_stretch_median , optimal_dice_stretch_gauss]
+
+        #load boxplot 
+        boxplot = pp.dataset_boxplot_otsu(data_N2DLHeLa , 'Preprocessing methods - N2DL-HeLa - Global Otsu Thresholding')
+
+    
+    if x == 'NIH3T3' :
+        
+        #load dataset 
+        img_NIH3T3 = []
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\NIH3T3\img")
+        for f in os.listdir(path):
+            img_NIH3T3.append(imread(os.path.join(path , f)))
+
+        gt_NIH3T3 = []
+        path = os.path.join(os.path.abspath(os.path.join(r'.', os.pardir)),r"data\Otsu_data\NIH3T3\gt")
+        for f in os.listdir(path):
+            gt_NIH3T3.append(imread(os.path.join(path , f)))
+
+        copy_img_NIH3T3 = img_NIH3T3.copy()
+
+        #perform preprocessing and otsu
+        median_img_NIH3T3 = []
+        for i in range(0,len(copy_img_NIH3T3)):
+            median_img_NIH3T3.append(scipy.ndimage.median_filter(copy_img_NIH3T3[i] , 16))
+
+        gauss_img_NIH3T3 = []
+        for i in range(0,len(copy_img_NIH3T3)):
+            gauss_img_NIH3T3.append(scipy.ndimage.gaussian_filter(copy_img_NIH3T3[i] , 8))
+
+        stretch_img_NIH3T3 = []
+        for i in range(0,len(copy_img_NIH3T3)):
+            stretch_img_NIH3T3.append(pp.stretch(copy_img_NIH3T3[i]))
+
+        median_stretch_img_NIH3T3 = []
+        for i in range(0,len(median_img_NIH3T3)):
+            median_stretch_img_NIH3T3.append(pp.stretch(median_img_NIH3T3[i]))
+
+        stretch_median_img_NIH3T3 = []
+        for i in range(0,len(stretch_img_NIH3T3)):
+            stretch_median_img_NIH3T3.append(scipy.ndimage.median_filter(stretch_img_NIH3T3[i] , 16))
+
+        gauss_stretch_img_NIH3T3 = []
+        for i in range(0,len(gauss_img_NIH3T3)):
+            gauss_stretch_img_NIH3T3.append(pp.stretch(gauss_img_NIH3T3[i]))
+
+        stretch_gauss_img_NIH3T3 = []
+        for i in range(0,len(stretch_img_NIH3T3)):
+            stretch_gauss_img_NIH3T3.append(scipy.ndimage.gaussian_filter(stretch_img_NIH3T3[i] , 8))
+
+        otsu_img_NIH3T3 = []
+        for i in range(0,len(copy_img_NIH3T3)):
+            otsu_img_NIH3T3.append(lt.local_thresholding_mean(copy_img_NIH3T3[i] , 50,150))
+
+        otsu_median_img_NIH3T3 = []
+        for i in range(0,len(median_img_NIH3T3)):
+            otsu_median_img_NIH3T3.append(lt.local_thresholding_mean(median_img_NIH3T3[i] , 50,150))
+
+        otsu_gauss_img_NIH3T3 = []
+        for i in range(0,len(gauss_img_NIH3T3)):
+            otsu_gauss_img_NIH3T3.append(lt.local_thresholding_mean(gauss_img_NIH3T3[i] , 50,150))
+
+        otsu_stretch_img_NIH3T3 = []
+        for i in range(0,len(stretch_img_NIH3T3)):
+            otsu_stretch_img_NIH3T3.append(lt.local_thresholding_mean(stretch_img_NIH3T3[i] , 50,150))
+        
+        otsu_median_stretch_img_NIH3T3 = []
+        for i in range(0,len(median_stretch_img_NIH3T3)):
+            otsu_median_stretch_img_NIH3T3.append(lt.local_thresholding_mean(median_stretch_img_NIH3T3[i] , 50,150))
+        
+        otsu_stretch_median_img_NIH3T3 = []
+        for i in range(0,len(stretch_median_img_NIH3T3)):
+            otsu_stretch_median_img_NIH3T3.append(lt.local_thresholding_mean(stretch_median_img_NIH3T3[i] , 50,150))
+        
+        otsu_gauss_stretch_img_NIH3T3 = []
+        for i in range(0,len(gauss_stretch_img_NIH3T3)):
+            otsu_gauss_stretch_img_NIH3T3.append(lt.local_thresholding_mean(gauss_stretch_img_NIH3T3[i] , 50,150))
+
+        otsu_stretch_gauss_img_NIH3T3 = []
+        for i in range(0,len(stretch_gauss_img_NIH3T3)):
+            otsu_stretch_gauss_img_NIH3T3.append(lt.local_thresholding_mean(stretch_gauss_img_NIH3T3[i] , 50,150))
+        
+        #calculate dice scores
+        dice_otsu_img_NIH3T3 = []
+        for j in range(0,len(otsu_img_NIH3T3)):
+            dice_otsu_img_NIH3T3.append(dsc.dice(otsu_img_NIH3T3[j] , gt_NIH3T3[j]))
+
+        dice_otsu_median_img_NIH3T3 = []
+        for j in range(0,len(otsu_median_img_NIH3T3)):
+            dice_otsu_median_img_NIH3T3.append(dsc.dice(otsu_median_img_NIH3T3[j] , gt_NIH3T3[j]))
+
+        dice_otsu_gauss_img_NIH3T3 = []
+        for j in range(0,len(otsu_gauss_img_NIH3T3)):
+            dice_otsu_gauss_img_NIH3T3.append(dsc.dice(otsu_gauss_img_NIH3T3[j] , gt_NIH3T3[j]))
+
+        dice_otsu_stretch_img_NIH3T3 = []
+        for j in range(0,len(otsu_stretch_img_NIH3T3)):
+            dice_otsu_stretch_img_NIH3T3.append(dsc.dice(otsu_stretch_img_NIH3T3[j] , gt_NIH3T3[j]))
+        
+        dice_otsu_median_stretch_img_NIH3T3 = []
+        for j in range(0,len(otsu_median_stretch_img_NIH3T3)):
+            dice_otsu_median_stretch_img_NIH3T3.append(dsc.dice(otsu_median_stretch_img_NIH3T3[j] , gt_NIH3T3[j]))
+
+        dice_otsu_stretch_median_img_NIH3T3 = []
+        for j in range(0,len(otsu_stretch_median_img_NIH3T3)):
+            dice_otsu_stretch_median_img_NIH3T3.append(dsc.dice(otsu_stretch_median_img_NIH3T3[j] , gt_NIH3T3[j]))
+        
+        #choose best combination histogram stretching and median filter 
+        median1 = st.median(dice_otsu_median_stretch_img_NIH3T3)
+        median2 = st.median(dice_otsu_stretch_median_img_NIH3T3)
+
+        if(max(median1,median2) == median1):
+            optimal_dice_stretch_median = dice_otsu_median_stretch_img_NIH3T3
+        else: optimal_dice_stretch_median = dice_otsu_stretch_median_img_NIH3T3
+
+        dice_otsu_gauss_stretch_img_NIH3T3 = []
+        for j in range(0,len(otsu_gauss_stretch_img_NIH3T3)):
+            dice_otsu_gauss_stretch_img_NIH3T3.append(dsc.dice(otsu_gauss_stretch_img_NIH3T3[j] , gt_NIH3T3[j]))
+        
+        dice_otsu_stretch_gauss_img_NIH3T3 = []
+        for j in range(0,len(otsu_stretch_gauss_img_NIH3T3)):
+            dice_otsu_stretch_gauss_img_NIH3T3.append(dsc.dice(otsu_stretch_gauss_img_NIH3T3[j] , gt_NIH3T3[j]))
+
+        #choose best combination histogram stretching and gaussian filter 
+        median3 = st.median(dice_otsu_gauss_stretch_img_NIH3T3)
+        median4 = st.median(dice_otsu_stretch_gauss_img_NIH3T3)
+
+        if(max(median3,median4) == median3):
+            optimal_dice_stretch_gauss = dice_otsu_gauss_stretch_img_NIH3T3
+        else: optimal_dice_stretch_gauss = dice_otsu_stretch_gauss_img_NIH3T3
+
+        data_NIH3T3 = [dice_otsu_img_NIH3T3 , dice_otsu_median_img_NIH3T3 , dice_otsu_gauss_img_NIH3T3 , dice_otsu_stretch_img_NIH3T3 , optimal_dice_stretch_median , optimal_dice_stretch_gauss]
+
+        #load boxplot
+        boxplot = pp.dataset_boxplot_otsu(data_NIH3T3 , 'Preprocessing methods - NIH3T3 - Global Otsu Thresholding')
+        
+    return boxplot
